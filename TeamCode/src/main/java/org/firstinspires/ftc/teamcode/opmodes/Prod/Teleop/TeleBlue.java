@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Opmodes.Prod.Teleop;
+package org.firstinspires.ftc.teamcode.opmodes.Prod.Teleop;
 
 public class TeleBlue {
 }
