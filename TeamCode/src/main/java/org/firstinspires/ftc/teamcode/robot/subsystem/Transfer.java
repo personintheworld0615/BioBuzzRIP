@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.robot.subsystem;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.seattlesolvers.solverslib.command.Command;
+import com.seattlesolvers.solverslib.command.StartEndCommand;
 import com.seattlesolvers.solverslib.command.SubsystemBase;
 
 /**
@@ -36,6 +38,14 @@ public class Transfer extends SubsystemBase {
 
     private void setPower(double power) {
         // TODO: command transfer motor/servo
+    }
+
+    /**
+     * Feeds game pieces from the transfer into the shooter until interrupted.
+     */
+    public Command feedTransfer() {
+        // TODO: finish once the game piece has left the transfer, if a sensor is added
+        return new StartEndCommand(this::feed, this::stop, this);
     }
 
     @Override

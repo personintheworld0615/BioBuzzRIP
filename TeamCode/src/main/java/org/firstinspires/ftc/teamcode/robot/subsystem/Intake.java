@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.robot.subsystem;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.seattlesolvers.solverslib.command.Command;
+import com.seattlesolvers.solverslib.command.StartEndCommand;
 import com.seattlesolvers.solverslib.command.SubsystemBase;
 
 /**
@@ -31,6 +33,21 @@ public class Intake extends SubsystemBase {
 
     private void setPower(double power) {
         // TODO: command intake motor
+    }
+
+    /**
+     * Runs the intake inward until interrupted.
+     */
+    public Command runIntake() {
+        // TODO: finish once a game piece is detected, if desired
+        return new StartEndCommand(this::intake, this::stop, this);
+    }
+
+    /**
+     * Runs the intake outward (spits game pieces out) until interrupted.
+     */
+    public Command reverseIntake() {
+        return new StartEndCommand(this::outtake, this::stop, this);
     }
 
     @Override
