@@ -28,3 +28,9 @@ dependencies {
     implementation project(':FtcRobotController')
     testImplementation 'junit:junit:4.13.2'
 }
+
+configurations.all {
+    resolutionStrategy {
+        force 'dev.frozenmilk.sinister:Sloth:0.3.0'
+    }
+}

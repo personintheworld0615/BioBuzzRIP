@@ -48,17 +48,13 @@ public class Yogurt extends LinearOpMode {
                     telemetry.addData("Pitch", "%.2f degrees", pitch);
                     telemetry.addData("Roll", "%.2f degrees", roll);
 
-                    //if the values are greater than the threshold then the hive is considered tipped
                     if (Math.abs(pitch) > TIPPED_THRESHOLD || Math.abs(roll) > TIPPED_THRESHOLD) {
                         hiveIsTipped = true;
                     }
                 }
             }
 
-
-
             telemetry.update();
-            sleep(20);
         }
 
         visionPortal.close();

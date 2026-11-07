@@ -4,12 +4,10 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.har
 
 import com.pedropathing.follower.Follower;
 
-import org.firstinspires.ftc.teamcode.pedro.Constants;
 
 public class Robot {
     private Follower follower;
     public Robot(){
-        follower = Constants.create(hardwareMap);
 
     }
     private void init(){

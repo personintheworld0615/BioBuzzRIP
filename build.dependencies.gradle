@@ -1,12 +1,12 @@
 repositories {
     mavenCentral()
-    google() // Needed for androidx
+    google()
     maven { url = 'https://maven.brott.dev/' }
     maven { url = 'https://repo.dairy.foundation/releases/' }
 }
 
 dependencies {
-    implementation 'com.pedropathing.ivy:pedro:1.1.1'
+    // FTC SDK
     implementation 'org.firstinspires.ftc:Inspection:12.0.0'
     implementation 'org.firstinspires.ftc:Blocks:12.0.0'
     implementation 'org.firstinspires.ftc:RobotCore:12.0.0'
@@ -15,12 +15,23 @@ dependencies {
     implementation 'org.firstinspires.ftc:Hardware:12.0.0'
     implementation 'org.firstinspires.ftc:FtcCommon:12.0.0'
     implementation 'org.firstinspires.ftc:Vision:12.0.0'
-    implementation 'androidx.appcompat:appcompat:1.8.0'
+
+    // AndroidX
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+
+    // PedroPathing
+    implementation 'com.pedropathing.ivy:pedro:1.1.1'
     implementation 'com.pedropathing:revhub:3.0.0'
     implementation 'com.pedropathing:tuning:1.0.0'
-    implementation 'com.acmerobotics.dashboard:dashboard:0.6.0'
+
+    // Dashboard
+//    implementation 'com.acmerobotics.dashboard:dashboard:0.6.0'
+    implementation 'com.acmerobotics.slothboard:dashboard:0.2.4+0.5.1'
+
+    // Marrow
     implementation 'com.skeletonarmyftc.marrow:core:1.2.2'
+
+    // SolversLib
     implementation 'org.solverslib:core:0.3.6'
     implementation 'org.solverslib:pedroPathing:0.3.6'
-    implementation 'com.skeletonarmyftc.marrow:core:1.2.2'
 }
