@@ -1,10 +1,13 @@
-package org.firstinspires.ftc.teamcode.Opmodes.Testers;
+package org.firstinspires.ftc.teamcode.opmodes.Testers;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.pedropathing.follower.Follower;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Utility;
-import org.firstinspires.ftc.teamcode.robot.subsystem.Outtake;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.teamcode.robot.subsystem.Shooter;
 
 @Config
 @Utility(name = "Shooter PIDF Tuner")
@@ -17,25 +20,24 @@ public class PIDTester extends LinearOpMode {
     public static double f;
 
     private Follower follower;
-    private Outtake outtake;
+    private Shooter outtake;
+    public DcMotorEx Shooter1, Shooter2;
 
     @Override
     public void runOpMode() {
 
-        outtake = new Outtake(hardwareMap, telemetry);
+        Shooter1 = hardwareMap.get(DcMotorEx.class, "Shooter1");
+        Shooter2 = hardwareMap.get(DcMotorEx.class, "Shooter2");
+        outtake = new Shooter(Shooter1, Shooter2, hardwareMap.get(Servo.class, "Linkage"));
 
-        telemetry.addData("Status", "Initialized. Open FTC Dashboard to tune PIDF constants!");
+        telemetry.addData("INIT", 0);
         telemetry.update();
 
         waitForStart();
 
         while (opModeIsActive()) {
             outtake.setPIDFConstants(p, i, d, f);
-
-            // 4. Spin up the shooter using the live target RPM dashboard variable
             outtake.spinToRpm(TARGET_RPM);
-            // 5. Send telemetry data to monitor targets vs reality
-            // In FTC Dashboard, these will draw clean graphs automatically!
             telemetry.addData("Target RPM", TARGET_RPM);
             telemetry.addData("Actual RPM motor 1", outtake.getRPM());
             telemetry.addData("Error RPM motor 1", TARGET_RPM - outtake.getRPM());
