@@ -30,8 +30,4 @@ dependencies {
 
     // Marrow
     implementation 'com.skeletonarmyftc.marrow:core:1.2.2'
-
-    // SolversLib
-    implementation 'org.solverslib:core:0.3.6'
-    implementation 'org.solverslib:pedroPathing:0.3.6'
 }

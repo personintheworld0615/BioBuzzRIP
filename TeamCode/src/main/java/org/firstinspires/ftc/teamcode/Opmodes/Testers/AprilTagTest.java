@@ -1,5 +1,4 @@
-
-package org.firstinspires.ftc.teamcode.Opmodes.Testers;
+package org.firstinspires.ftc.teamcode.opmodes.Testers;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -17,7 +16,6 @@ public class AprilTagTest extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-
         // Initialize webcam
         WebcamName webcam = hardwareMap.get(
                 WebcamName.class, "Webcam 1");
