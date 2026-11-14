@@ -1,0 +1,138 @@
+--------- beginning of main
+11-06 18:40:12.000  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.hardware.HardwareMap.get(HardwareMap.java:213)
+11-06 18:40:12.001  1960  2306 E OpModeManager: 	at org.firstinspires.ftc.teamcode.robot.subsystem.Outtake.<init>(Outtake.java:46)
+11-06 18:40:12.003  1960  2289 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(19406), attempt: 0
+11-06 18:40:12.003  1960  2306 E OpModeManager: 	at org.firstinspires.ftc.teamcode.Opmodes.Testers.PIDTester.runOpMode(PIDTester.java:25)
+11-06 18:40:12.005  1960  2289 V Robocol : sending CMD_SHOW_STACKTRACE(19409), attempt: 0
+11-06 18:40:12.005  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.LinearOpMode.internalRunOpMode(LinearOpMode.java:199)
+11-06 18:40:12.007  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$1$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:186)
+11-06 18:40:12.008  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+11-06 18:40:12.010  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool.logThreadLifeCycle(ThreadPool.java:737)
+11-06 18:40:12.011  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$2$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:184)
+11-06 18:40:12.012  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+11-06 18:40:12.013  1960  2306 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1133)
+11-06 18:40:12.014  1960  2306 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:607)
+11-06 18:40:12.015  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool$ThreadFactoryImpl$1.run(ThreadPool.java:793)
+11-06 18:40:12.016  1960  2306 E OpModeManager: 	at java.lang.Thread.run(Thread.java:761)
+11-06 18:40:12.017  1960  2306 I RobotCore: Attempting to switch to OpMode $Stop$Robot$
+11-06 18:40:12.019  1960  2306 I RobotCore: ******************** STOP - OPMODE /storage/emulated/0/FIRST/matchlogs/Match-0-Shooter_PIDF_Tuner.txt ********************
+11-06 18:40:12.024  1960  4577 I RobotCore: saving match logcat to /storage/emulated/0/FIRST/matchlogs/Match-0-Shooter_PIDF_Tuner.txt
+11-06 18:40:12.024  1960  2306 D HardwareMap: Clearing which device instances have been retrieved
+11-06 18:40:12.024  1960  4577 I RobotCore: logging command line: exec logcat -d -T '11-6 18:40:11.000' -f '/storage/emulated/0/FIRST/matchlogs/Match-0-Shooter_PIDF_Tuner.txt' -n4 -v threadtime UsbRequestJNI:S UsbRequest:S art:W ThreadPool:W System:W ExtendedExtractor:W OMXClient:W MediaPlayer:W dalvikvm:W  *:V
+11-06 18:40:12.028  1960  4579 V RobotCore: thread: 'OpModeThread' starting...
+11-06 18:40:12.035  1960  4579 V RobotCore: thread: ...terminating 'OpModeThread'
+11-06 18:40:12.037  1960  2306 I RobotCore: Attempting to switch to OpMode $Stop$Robot$
+11-06 18:40:12.039  1960  2306 D HardwareMap: Clearing which device instances have been retrieved
+11-06 18:40:12.041  1960  4581 V RobotCore: thread: 'OpModeThread' starting...
+11-06 18:40:12.043  1960  2289 V Robocol : sending CMD_SHOW_STACKTRACE(19415), attempt: 0
+11-06 18:40:12.044  1960  2289 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(19420), attempt: 0
+11-06 18:40:12.044  1960  2289 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(19429), attempt: 0
+11-06 18:40:12.045  1960  2289 V Robocol : sending CMD_NOTIFY_RUN_OP_MODE(19431), attempt: 0
+11-06 18:40:12.069  1960  4581 V RobotCore: thread: ...terminating 'OpModeThread'
+11-06 18:40:12.073  1960  2306 I RobotCore: Attempting to switch to OpMode Shooter PIDF Tuner
+11-06 18:40:12.076  1960  2306 I RobotCore: ******************** START - OPMODE Shooter PIDF Tuner ********************
+11-06 18:40:12.081  1960  4577 I RobotCore: Done running exec logcat -d -T '11-6 18:40:11.000' -f '/storage/emulated/0/FIRST/matchlogs/Match-0-Shooter_PIDF_Tuner.txt' -n4 -v threadtime UsbRequestJNI:S UsbRequest:S art:W ThreadPool:W System:W ExtendedExtractor:W OMXClient:W MediaPlayer:W dalvikvm:W  *:V
+11-06 18:40:12.082  1960  4577 I RobotCore: exiting match logcat for /storage/emulated/0/FIRST/matchlogs/Match-0-Shooter_PIDF_Tuner.txt
+11-06 18:40:12.141  1960  2306 D HardwareMap: Clearing which device instances have been retrieved
+11-06 18:40:12.144  1960  4584 V RobotCore: thread: 'OpModeThread' starting...
+11-06 18:40:12.145  1960  4584 V RobotCore: thread: ...terminating 'OpModeThread'
+11-06 18:40:12.149  1960  2306 E OpModeManager: User code threw an uncaught exception
+11-06 18:40:12.151  1960  2306 E OpModeManager: java.lang.IllegalArgumentException: Unable to find a hardware device with name "Outtake2" and type DcMotorEx
+11-06 18:40:12.152  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.hardware.HardwareMap.get(HardwareMap.java:213)
+11-06 18:40:12.152  1960  2306 E OpModeManager: 	at org.firstinspires.ftc.teamcode.robot.subsystem.Outtake.<init>(Outtake.java:46)
+11-06 18:40:12.153  1960  2306 E OpModeManager: 	at org.firstinspires.ftc.teamcode.Opmodes.Testers.PIDTester.runOpMode(PIDTester.java:25)
+11-06 18:40:12.153  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.LinearOpMode.internalRunOpMode(LinearOpMode.java:199)
+11-06 18:40:12.154  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$1$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:186)
+11-06 18:40:12.155  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+11-06 18:40:12.155  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool.logThreadLifeCycle(ThreadPool.java:737)
+11-06 18:40:12.156  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$2$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:184)
+11-06 18:40:12.157  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+11-06 18:40:12.157  1960  2306 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1133)
+11-06 18:40:12.158  1960  2306 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:607)
+11-06 18:40:12.159  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool$ThreadFactoryImpl$1.run(ThreadPool.java:793)
+11-06 18:40:12.159  1960  2306 E OpModeManager: 	at java.lang.Thread.run(Thread.java:761)
+11-06 18:40:12.162  1960  2289 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(19449), attempt: 0
+11-06 18:40:12.163  1960  2289 V Robocol : sending CMD_SHOW_STACKTRACE(19452), attempt: 0
+11-06 18:40:12.165  1960  2306 E OpModeManager: User code threw an uncaught exception
+11-06 18:40:12.166  1960  2306 E OpModeManager: java.lang.IllegalArgumentException: Unable to find a hardware device with name "Outtake2" and type DcMotorEx
+11-06 18:40:12.166  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.hardware.HardwareMap.get(HardwareMap.java:213)
+11-06 18:40:12.167  1960  2306 E OpModeManager: 	at org.firstinspires.ftc.teamcode.robot.subsystem.Outtake.<init>(Outtake.java:46)
+11-06 18:40:12.168  1960  2306 E OpModeManager: 	at org.firstinspires.ftc.teamcode.Opmodes.Testers.PIDTester.runOpMode(PIDTester.java:25)
+11-06 18:40:12.169  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.LinearOpMode.internalRunOpMode(LinearOpMode.java:199)
+11-06 18:40:12.170  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$1$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:186)
+11-06 18:40:12.171  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+11-06 18:40:12.171  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool.logThreadLifeCycle(ThreadPool.java:737)
+11-06 18:40:12.173  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$2$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:184)
+11-06 18:40:12.174  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+11-06 18:40:12.175  1960  2306 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1133)
+11-06 18:40:12.175  1960  2306 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:607)
+11-06 18:40:12.176  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool$ThreadFactoryImpl$1.run(ThreadPool.java:793)
+11-06 18:40:12.176  1960  2306 E OpModeManager: 	at java.lang.Thread.run(Thread.java:761)
+11-06 18:40:12.177  1960  2306 I RobotCore: Attempting to switch to OpMode $Stop$Robot$
+11-06 18:40:12.180  1960  2306 I RobotCore: ******************** STOP - OPMODE /storage/emulated/0/FIRST/matchlogs/Match-0-Shooter_PIDF_Tuner.txt ********************
+11-06 18:40:12.184  1960  4586 I RobotCore: saving match logcat to /storage/emulated/0/FIRST/matchlogs/Match-0-Shooter_PIDF_Tuner.txt
+11-06 18:40:12.184  1960  2306 D HardwareMap: Clearing which device instances have been retrieved
+11-06 18:40:12.184  1960  4586 I RobotCore: logging command line: exec logcat -d -T '11-6 18:40:12.000' -f '/storage/emulated/0/FIRST/matchlogs/Match-0-Shooter_PIDF_Tuner.txt' -n4 -v threadtime UsbRequestJNI:S UsbRequest:S art:W ThreadPool:W System:W ExtendedExtractor:W OMXClient:W MediaPlayer:W dalvikvm:W  *:V
+11-06 18:40:12.187  1960  4588 V RobotCore: thread: 'OpModeThread' starting...
+11-06 18:40:12.193  1960  4588 V RobotCore: thread: ...terminating 'OpModeThread'
+11-06 18:40:12.195  1960  2306 I RobotCore: Attempting to switch to OpMode $Stop$Robot$
+11-06 18:40:12.197  1960  2306 D HardwareMap: Clearing which device instances have been retrieved
+11-06 18:40:12.201  1960  4590 V RobotCore: thread: 'OpModeThread' starting...
+11-06 18:40:12.203  1960  2289 V Robocol : sending CMD_SHOW_STACKTRACE(19458), attempt: 0
+11-06 18:40:12.204  1960  2289 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(19463), attempt: 0
+11-06 18:40:12.204  1960  2289 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(19472), attempt: 0
+11-06 18:40:12.205  1960  2289 V Robocol : sending CMD_NOTIFY_RUN_OP_MODE(19474), attempt: 0
+11-06 18:40:12.237  1960  4586 I RobotCore: Done running exec logcat -d -T '11-6 18:40:12.000' -f '/storage/emulated/0/FIRST/matchlogs/Match-0-Shooter_PIDF_Tuner.txt' -n4 -v threadtime UsbRequestJNI:S UsbRequest:S art:W ThreadPool:W System:W ExtendedExtractor:W OMXClient:W MediaPlayer:W dalvikvm:W  *:V
+11-06 18:40:12.237  1960  4586 I RobotCore: exiting match logcat for /storage/emulated/0/FIRST/matchlogs/Match-0-Shooter_PIDF_Tuner.txt
+11-06 18:40:12.250  1960  4590 V RobotCore: thread: ...terminating 'OpModeThread'
+11-06 18:40:12.256  1960  2306 I RobotCore: Attempting to switch to OpMode Shooter PIDF Tuner
+11-06 18:40:12.260  1960  2306 I RobotCore: ******************** START - OPMODE Shooter PIDF Tuner ********************
+11-06 18:40:12.329  1960  2306 D HardwareMap: Clearing which device instances have been retrieved
+11-06 18:40:12.333  1960  4593 V RobotCore: thread: 'OpModeThread' starting...
+11-06 18:40:12.334  1960  4593 V RobotCore: thread: ...terminating 'OpModeThread'
+11-06 18:40:12.337  1960  2306 E OpModeManager: User code threw an uncaught exception
+11-06 18:40:12.339  1960  2306 E OpModeManager: java.lang.IllegalArgumentException: Unable to find a hardware device with name "Outtake2" and type DcMotorEx
+11-06 18:40:12.340  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.hardware.HardwareMap.get(HardwareMap.java:213)
+11-06 18:40:12.340  1960  2306 E OpModeManager: 	at org.firstinspires.ftc.teamcode.robot.subsystem.Outtake.<init>(Outtake.java:46)
+11-06 18:40:12.341  1960  2306 E OpModeManager: 	at org.firstinspires.ftc.teamcode.Opmodes.Testers.PIDTester.runOpMode(PIDTester.java:25)
+11-06 18:40:12.342  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.LinearOpMode.internalRunOpMode(LinearOpMode.java:199)
+11-06 18:40:12.343  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$1$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:186)
+11-06 18:40:12.343  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+11-06 18:40:12.344  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool.logThreadLifeCycle(ThreadPool.java:737)
+11-06 18:40:12.345  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$2$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:184)
+11-06 18:40:12.345  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+11-06 18:40:12.346  1960  2306 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1133)
+11-06 18:40:12.347  1960  2306 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:607)
+11-06 18:40:12.347  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool$ThreadFactoryImpl$1.run(ThreadPool.java:793)
+11-06 18:40:12.348  1960  2306 E OpModeManager: 	at java.lang.Thread.run(Thread.java:761)
+11-06 18:40:12.353  1960  2306 E OpModeManager: User code threw an uncaught exception
+11-06 18:40:12.355  1960  2306 E OpModeManager: java.lang.IllegalArgumentException: Unable to find a hardware device with name "Outtake2" and type DcMotorEx
+11-06 18:40:12.356  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.hardware.HardwareMap.get(HardwareMap.java:213)
+11-06 18:40:12.356  1960  2306 E OpModeManager: 	at org.firstinspires.ftc.teamcode.robot.subsystem.Outtake.<init>(Outtake.java:46)
+11-06 18:40:12.357  1960  2306 E OpModeManager: 	at org.firstinspires.ftc.teamcode.Opmodes.Testers.PIDTester.runOpMode(PIDTester.java:25)
+11-06 18:40:12.358  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.LinearOpMode.internalRunOpMode(LinearOpMode.java:199)
+11-06 18:40:12.360  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$1$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:186)
+11-06 18:40:12.361  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+11-06 18:40:12.361  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool.logThreadLifeCycle(ThreadPool.java:737)
+11-06 18:40:12.362  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$2$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:184)
+11-06 18:40:12.362  1960  2289 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(19496), attempt: 0
+11-06 18:40:12.363  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+11-06 18:40:12.363  1960  2289 V Robocol : sending CMD_SHOW_STACKTRACE(19500), attempt: 0
+11-06 18:40:12.364  1960  2306 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1133)
+11-06 18:40:12.365  1960  2306 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:607)
+11-06 18:40:12.366  1960  2306 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool$ThreadFactoryImpl$1.run(ThreadPool.java:793)
+11-06 18:40:12.366  1960  2306 E OpModeManager: 	at java.lang.Thread.run(Thread.java:761)
+11-06 18:40:12.368  1960  2306 I RobotCore: Attempting to switch to OpMode $Stop$Robot$
+11-06 18:40:12.370  1960  2306 I RobotCore: ******************** STOP - OPMODE /storage/emulated/0/FIRST/matchlogs/Match-0-Shooter_PIDF_Tuner.txt ********************
+11-06 18:40:12.375  1960  4595 I RobotCore: saving match logcat to /storage/emulated/0/FIRST/matchlogs/Match-0-Shooter_PIDF_Tuner.txt
+11-06 18:40:12.375  1960  2306 D HardwareMap: Clearing which device instances have been retrieved
+11-06 18:40:12.375  1960  4595 I RobotCore: logging command line: exec logcat -d -T '11-6 18:40:12.000' -f '/storage/emulated/0/FIRST/matchlogs/Match-0-Shooter_PIDF_Tuner.txt' -n4 -v threadtime UsbRequestJNI:S UsbRequest:S art:W ThreadPool:W System:W ExtendedExtractor:W OMXClient:W MediaPlayer:W dalvikvm:W  *:V
+11-06 18:40:12.378  1960  4597 V RobotCore: thread: 'OpModeThread' starting...
+11-06 18:40:12.385  1960  4597 V RobotCore: thread: ...terminating 'OpModeThread'
+11-06 18:40:12.387  1960  2306 I RobotCore: Attempting to switch to OpMode $Stop$Robot$
+11-06 18:40:12.389  1960  2306 D HardwareMap: Clearing which device instances have been retrieved
+11-06 18:40:12.393  1960  4599 V RobotCore: thread: 'OpModeThread' starting...
+11-06 18:40:12.402  1960  2289 V Robocol : sending CMD_SHOW_STACKTRACE(19504), attempt: 0
+11-06 18:40:12.403  1960  2289 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(19511), attempt: 0
+11-06 18:40:12.404  1960  2289 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(19520), attempt: 0
+11-06 18:40:12.405  1960  2289 V Robocol : sending CMD_NOTIFY_RUN_OP_MODE(19522), attempt: 0

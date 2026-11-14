@@ -1,0 +1,48 @@
+--------- beginning of main
+11-06 17:51:12.083   971  1272 D RobotCore: User runOpModeMethod exited
+11-06 17:51:12.084   971  1272 V RobotCore: thread: ...terminating 'OpModeThread'
+11-06 17:51:12.087   971  1231 I RobotCore: Attempting to switch to OpMode AprilTag Cluster Test
+11-06 17:51:12.092   971  1231 I RobotCore: ******************** START - OPMODE AprilTag Cluster Test ********************
+11-06 17:51:12.105   971  1206 V Robocol : sending CMD_STREAM_CHANGE(16538), attempt: 0
+11-06 17:51:12.179   971  1231 D HardwareMap: Clearing which device instances have been retrieved
+11-06 17:51:12.183   971  1277 V RobotCore: thread: 'OpModeThread' starting...
+11-06 17:51:12.185   971  1206 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(16545), attempt: 0
+11-06 17:51:12.190   971  1277 D AprilTagDetectorJNI: Creating 36h11 tag family
+11-06 17:51:12.190   971  1277 D AprilTagDetectorJNI: Initializing april tag detector
+11-06 17:51:12.342   971  1277 I System.out: OpenCvCameraBase ctor: EasyOpenCV version 1.7.3
+11-06 17:51:12.345   971  1206 V Robocol : sending CMD_STREAM_CHANGE(16590), attempt: 0
+11-06 17:51:12.351   971  1278 D CameraManager: doOpenCamera()...
+11-06 17:51:12.351   971  1278 D CameraManager: requesting permission for camera: Webcam(AE2130F0)
+11-06 17:51:12.360   971  1278 D WebcamNameImpl: unable to find usbDevice: AE2130F0
+11-06 17:51:12.360   971  1274 E CameraManager: permission declined for camera: Webcam(AE2130F0)
+11-06 17:51:12.361   971  1274 D ContinuationSynchronizer: finish("permission declined": null)...
+11-06 17:51:12.361   971  1274 D ContinuationSynchronizer: ...finish("permission declined": null)
+11-06 17:51:12.361   971  1278 D ContinuationSynchronizer: awaiting(camera open)...
+11-06 17:51:12.361   971  1278 E ContinuationSynchronizer: deadline expired during await()
+11-06 17:51:12.361   971  1278 D ContinuationSynchronizer: ...awaiting(camera open)
+11-06 17:51:12.362   971  1278 D CameraManager: ...doOpenCamera()
+11-06 17:51:12.362   971  1278 E VisionPortalImpl: Camera opening failed.
+11-06 17:51:16.832   971  1202 V Robocol : received command: CMD_RUN_OP_MODE(11288) AprilTag Cluster Test
+11-06 17:51:16.866   971  1206 V Robocol : sending CMD_NOTIFY_RUN_OP_MODE(18170), attempt: 0
+11-06 17:51:22.789   971  1202 V Robocol : received command: CMD_INIT_OP_MODE(11374) $Stop$Robot$
+11-06 17:51:22.796   971  1277 D RobotCore: User runOpModeMethod exited
+11-06 17:51:22.801   971  1277 V RobotCore: thread: ...terminating 'OpModeThread'
+11-06 17:51:22.803   971  1231 I RobotCore: Attempting to switch to OpMode $Stop$Robot$
+11-06 17:51:22.804   971  1231 I RobotCore: ******************** STOP - OPMODE /storage/emulated/0/FIRST/matchlogs/Match-0-AprilTag_Cluster_Test.txt ********************
+11-06 17:51:22.812   971  1231 D HardwareMap: Clearing which device instances have been retrieved
+11-06 17:51:22.812   971  1282 I RobotCore: saving match logcat to /storage/emulated/0/FIRST/matchlogs/Match-0-AprilTag_Cluster_Test.txt
+11-06 17:51:22.813   971  1282 I RobotCore: logging command line: exec logcat -d -T '11-6 17:51:12.000' -f '/storage/emulated/0/FIRST/matchlogs/Match-0-AprilTag_Cluster_Test.txt' -n4 -v threadtime UsbRequestJNI:S UsbRequest:S art:W ThreadPool:W System:W ExtendedExtractor:W OMXClient:W MediaPlayer:W dalvikvm:W  *:V
+11-06 17:51:22.816   971  1284 V RobotCore: thread: 'OpModeThread' starting...
+11-06 17:51:22.825   971  1284 I I2C     : Automatically initializing I2C device RevColorSensorV3 (USB (embedded); module 173; bus 2; addr7=0x52)
+11-06 17:51:22.825   971  1284 V BroadcomColorSensorImpl: internalInitialize()...
+11-06 17:51:22.826   971  1206 V Robocol : sending CMD_STREAM_CHANGE(19337), attempt: 0
+11-06 17:51:22.827   971  1206 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(19342), attempt: 0
+11-06 17:51:22.828   971  1206 V Robocol : sending CMD_NOTIFY_RUN_OP_MODE(19344), attempt: 0
+11-06 17:51:22.829   971  1284 V RobotCore: addr=false data=true arb=false clock=false
+11-06 17:51:22.829   971  1284 E BroadcomColorSensor: readStatusQuery: cbExpected=1 cbRead=0
+11-06 17:51:22.829   971  1284 E LynxI2cDeviceSynch: placeholder: readStatusQuery
+11-06 17:51:22.830   971  1284 E BroadcomColorSensorImpl: unexpected Broadcom color sensor chipid: found=0 expected=-62
+11-06 17:51:22.830   971  1284 V BroadcomColorSensorImpl: ...internalInitialize()
+11-06 17:51:22.830   971  1284 E RobotCore: Marking I2C device RevColorSensorV3 USB (embedded); module 173; bus 2; addr7=0x52 as unhealthy because initialization failed
+11-06 17:51:22.830  1283  1283 I sh      : type=1400 audit(0.0:120): avc: denied { read } for name="/" dev="rootfs" ino=1 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=1
+11-06 17:51:22.830  1283  1283 I sh      : type=1400 audit(0.0:121): avc: denied { open } for path="/" dev="rootfs" ino=1 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=1

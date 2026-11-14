@@ -1,0 +1,45 @@
+--------- beginning of main
+08-22 13:16:53.097   976  1162 V Robocol : received command: CMD_SET_MATCH_NUMBER(10403) 0
+08-22 13:16:53.098   976  1162 V Robocol : received command: CMD_INIT_OP_MODE(10404) Teleop
+08-22 13:16:53.125   976  1212 V RobotCore: thread: ...terminating 'OpModeThread'
+08-22 13:16:53.127   976  1176 I RobotCore: Attempting to switch to OpMode Teleop
+08-22 13:16:53.131   976  1176 I RobotCore: ******************** START - OPMODE Teleop ********************
+08-22 13:16:54.800   976  1176 D HardwareMap: Clearing which device instances have been retrieved
+08-22 13:16:54.802   976  1216 V RobotCore: thread: 'OpModeThread' starting...
+08-22 13:16:54.802   976  1216 V RobotCore: thread: ...terminating 'OpModeThread'
+08-22 13:16:54.804   976  1176 E OpModeManager: User code threw an uncaught exception
+08-22 13:16:54.808   976  1189 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(484), attempt: 0
+08-22 13:16:54.814   976  1176 E OpModeManager: java.lang.NullPointerException: Attempt to invoke interface method 'org.firstinspires.ftc.robotcore.external.Telemetry$Line org.firstinspires.ftc.robotcore.external.Telemetry.addLine(java.lang.String)' on a null object reference
+08-22 13:16:54.816   976  1176 E OpModeManager: 	at org.firstinspires.ftc.teamcode.Teleop.runOpMode(Teleop.java:32)
+08-22 13:16:54.819   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.LinearOpMode.internalRunOpMode(LinearOpMode.java:199)
+08-22 13:16:54.823   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$1$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:184)
+08-22 13:16:54.826   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+08-22 13:16:54.828   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool.logThreadLifeCycle(ThreadPool.java:737)
+08-22 13:16:54.831   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$2$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:182)
+08-22 13:16:54.833   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+08-22 13:16:54.836   976  1176 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1133)
+08-22 13:16:54.837   976  1176 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:607)
+08-22 13:16:54.838   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool$ThreadFactoryImpl$1.run(ThreadPool.java:793)
+08-22 13:16:54.838   976  1176 E OpModeManager: 	at java.lang.Thread.run(Thread.java:761)
+08-22 13:16:54.848   976  1189 V Robocol : sending CMD_SHOW_STACKTRACE(487), attempt: 0
+08-22 13:16:54.848   976  1176 E OpModeManager: User code threw an uncaught exception
+08-22 13:16:54.853   976  1176 E OpModeManager: java.lang.NullPointerException: Attempt to invoke interface method 'org.firstinspires.ftc.robotcore.external.Telemetry$Line org.firstinspires.ftc.robotcore.external.Telemetry.addLine(java.lang.String)' on a null object reference
+08-22 13:16:54.854   976  1176 E OpModeManager: 	at org.firstinspires.ftc.teamcode.Teleop.runOpMode(Teleop.java:32)
+08-22 13:16:54.855   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.LinearOpMode.internalRunOpMode(LinearOpMode.java:199)
+08-22 13:16:54.855   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$1$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:184)
+08-22 13:16:54.856   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+08-22 13:16:54.857   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool.logThreadLifeCycle(ThreadPool.java:737)
+08-22 13:16:54.857   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$2$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:182)
+08-22 13:16:54.859   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+08-22 13:16:54.859   976  1176 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1133)
+08-22 13:16:54.860   976  1176 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:607)
+08-22 13:16:54.860   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool$ThreadFactoryImpl$1.run(ThreadPool.java:793)
+08-22 13:16:54.861   976  1176 E OpModeManager: 	at java.lang.Thread.run(Thread.java:761)
+08-22 13:16:54.862   976  1176 I RobotCore: Attempting to switch to OpMode $Stop$Robot$
+08-22 13:16:54.864   976  1176 I RobotCore: ******************** STOP - OPMODE /storage/emulated/0/FIRST/matchlogs/Match-0-Teleop.txt ********************
+08-22 13:16:54.868   976  1176 I RobotCore: Pruning old match logs: deleting Match-0-Strafe_Velocity_Tuner.txt
+08-22 13:16:54.871   976  1218 I RobotCore: saving match logcat to /storage/emulated/0/FIRST/matchlogs/Match-0-Teleop.txt
+08-22 13:16:54.871   976  1218 I RobotCore: logging command line: exec logcat -d -T '8-22 13:16:53.000' -f '/storage/emulated/0/FIRST/matchlogs/Match-0-Teleop.txt' -n4 -v threadtime UsbRequestJNI:S UsbRequest:S art:W ThreadPool:W System:W ExtendedExtractor:W OMXClient:W MediaPlayer:W dalvikvm:W  *:V
+08-22 13:16:54.882  1219  1219 I sh      : type=1400 audit(0.0:115): avc: denied { read } for name="/" dev="rootfs" ino=1 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=1
+08-22 13:16:54.888   976  1189 V Robocol : sending CMD_SHOW_STACKTRACE(491), attempt: 0
+08-22 13:16:54.882  1219  1219 I sh      : type=1400 audit(0.0:116): avc: denied { open } for path="/" dev="rootfs" ino=1 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=1
