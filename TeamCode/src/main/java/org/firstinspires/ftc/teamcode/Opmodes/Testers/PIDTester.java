@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Utility;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.robot.subsystem.Shooter;
+import org.firstinspires.ftc.teamcode.robot.subsystem.Outtake;
 
 @Config
 @Utility(name = "Shooter PIDF Tuner")
@@ -20,7 +20,7 @@ public class PIDTester extends LinearOpMode {
     public static double f;
 
     private Follower follower;
-    private Shooter outtake;
+    private Outtake outtake;
     public DcMotorEx Shooter1, Shooter2;
 
     @Override
@@ -28,7 +28,7 @@ public class PIDTester extends LinearOpMode {
 
         Shooter1 = hardwareMap.get(DcMotorEx.class, "Shooter1");
         Shooter2 = hardwareMap.get(DcMotorEx.class, "Shooter2");
-        outtake = new Shooter(Shooter1, Shooter2, hardwareMap.get(Servo.class, "Linkage"));
+        outtake = new Outtake(hardwareMap,telemetry);
 
         telemetry.addData("INIT", 0);
         telemetry.update();
