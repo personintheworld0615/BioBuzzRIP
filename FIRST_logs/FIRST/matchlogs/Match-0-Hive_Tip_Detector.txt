@@ -1,0 +1,203 @@
+--------- beginning of main
+11-06 18:22:05.447  1960  2097 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) expire 126 lines
+11-06 18:22:05.531  1960  2119 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) expire 4 lines
+11-06 18:22:05.532  1960  2390 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) expire 77 lines
+11-06 18:22:05.719  1960  2392 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) CameraManager-# expire 93 lines
+11-06 18:22:05.762  1960  2393 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) expire 2 lines
+11-06 18:22:05.766  1960  2305 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) pRunnable.run() expire 1 line
+11-06 18:22:06.414  1960  1971 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) HeapTaskDaemon expire 12 lines
+11-06 18:22:06.847  1960  2114 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) expire 1 line
+11-06 18:22:06.856  1960  2113 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) expire 1 line
+11-06 18:22:06.865  1960  2110 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) expire 1 line
+11-06 18:22:06.865  1960  2112 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) expire 1 line
+11-06 18:22:06.867  1960  2111 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) expire 1 line
+11-06 18:22:06.870  1960  2116 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) expire 1 line
+11-06 18:22:06.870  1960  2118 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) expire 1 line
+11-06 18:22:06.879  1960  2120 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) expire 1 line
+11-06 18:22:06.883  1960  2115 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) expire 1 line
+11-06 18:22:06.885  1960  2117 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) expire 1 line
+11-06 18:22:06.950  1960  1965 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) Jit thread pool expire 5 lines
+11-06 18:22:07.106  1960  2188 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) default schedul expire 1 line
+11-06 18:22:16.563  1960  2289 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) pool-14-thread- expire 1 line
+11-06 18:22:17.093  1960  1971 I chatty  : uid=10040(com.qualcomm.ftcrobotcontroller) HeapTaskDaemon expire 17 lines
+11-06 18:32:43.233  1960  2192 E RobotCore: java.net.SocketException: Socket closed
+11-06 18:32:43.236  1960  2192 E RobotCore: 	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:120)
+11-06 18:32:43.238  1960  2192 E RobotCore: 	at java.net.SocketOutputStream.write(SocketOutputStream.java:136)
+11-06 18:32:43.240  1960  2192 E RobotCore: 	at fi.iki.elonen.NanoWSD$WebSocketFrame.write(NanoWSD.java:702)
+11-06 18:32:43.241  1960  2192 E RobotCore: 	at fi.iki.elonen.NanoWSD$WebSocket.sendFrame(NanoWSD.java:273)
+11-06 18:32:43.243  1960  2192 E RobotCore: 	at fi.iki.elonen.NanoWSD$WebSocket.send(NanoWSD.java:268)
+11-06 18:32:43.245  1960  2192 E RobotCore: 	at com.acmerobotics.dashboard.FtcDashboard$DashWebSocket.send(FtcDashboard.java:1004)
+11-06 18:32:43.247  1960  2192 E RobotCore: 	at com.acmerobotics.dashboard.DashboardCore.lambda$sendAll$7(DashboardCore.java:312)
+11-06 18:32:43.250  1960  2192 E RobotCore: 	at com.acmerobotics.dashboard.DashboardCore$$ExternalSyntheticLambda1.apply(D8$$SyntheticClass:0)
+11-06 18:32:43.252  1960  2192 E RobotCore: 	at com.acmerobotics.dashboard.Mutex.with(Mutex.java:25)
+11-06 18:32:43.254  1960  2192 E RobotCore: 	at com.acmerobotics.dashboard.DashboardCore.sendAll(DashboardCore.java:310)
+11-06 18:32:43.256  1960  2192 E RobotCore: 	at com.acmerobotics.dashboard.DashboardCore$TelemetryUpdateRunnable.run(DashboardCore.java:96)
+11-06 18:32:43.258  1960  2192 E RobotCore: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:428)
+11-06 18:32:43.259  1960  2192 E RobotCore: 	at java.util.concurrent.FutureTask.run(FutureTask.java:237)
+11-06 18:32:43.260  1960  2192 E RobotCore: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1133)
+11-06 18:32:43.262  1960  2192 E RobotCore: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:607)
+11-06 18:32:43.263  1960  2192 E RobotCore: 	at java.lang.Thread.run(Thread.java:761)
+11-06 18:39:48.224  1960  2393 E RobotCore: java.net.SocketException: Socket closed
+11-06 18:39:48.226  1960  2393 E RobotCore: 	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:120)
+11-06 18:39:48.228  1960  2393 E RobotCore: 	at java.net.SocketOutputStream.write(SocketOutputStream.java:136)
+11-06 18:39:48.229  1960  2393 E RobotCore: 	at fi.iki.elonen.NanoWSD$WebSocketFrame.write(NanoWSD.java:702)
+11-06 18:39:48.230  1960  2393 E RobotCore: 	at fi.iki.elonen.NanoWSD$WebSocket.sendFrame(NanoWSD.java:273)
+11-06 18:39:48.230  1960  2393 E RobotCore: 	at fi.iki.elonen.NanoWSD$WebSocket.send(NanoWSD.java:268)
+11-06 18:39:48.231  1960  2393 E RobotCore: 	at com.acmerobotics.dashboard.FtcDashboard$DashWebSocket.send(FtcDashboard.java:1004)
+11-06 18:39:48.232  1960  2393 E RobotCore: 	at com.acmerobotics.dashboard.DashboardCore.lambda$sendAll$7(DashboardCore.java:312)
+11-06 18:39:48.233  1960  2393 E RobotCore: 	at com.acmerobotics.dashboard.DashboardCore$$ExternalSyntheticLambda1.apply(D8$$SyntheticClass:0)
+11-06 18:39:48.234  1960  2393 E RobotCore: 	at com.acmerobotics.dashboard.Mutex.with(Mutex.java:25)
+11-06 18:39:48.234  1960  2393 E RobotCore: 	at com.acmerobotics.dashboard.DashboardCore.sendAll(DashboardCore.java:310)
+11-06 18:39:48.235  1960  2393 E RobotCore: 	at com.acmerobotics.dashboard.FtcDashboard.sendAll(FtcDashboard.java:1817)
+11-06 18:39:48.236  1960  2393 E RobotCore: 	at com.acmerobotics.dashboard.FtcDashboard.access$400(FtcDashboard.java:106)
+11-06 18:39:48.236  1960  2393 E RobotCore: 	at com.acmerobotics.dashboard.FtcDashboard$CameraStreamRunnable$1.accept(FtcDashboard.java:736)
+11-06 18:39:48.238  1960  2393 E RobotCore: 	at com.acmerobotics.dashboard.FtcDashboard$CameraStreamRunnable$1.accept(FtcDashboard.java:733)
+11-06 18:39:48.241  1960  2393 E RobotCore: 	at org.openftc.easyopencv.OpenCvCameraBase$4.handle(OpenCvCameraBase.java:749)
+11-06 18:39:48.241  1960  2393 E RobotCore: 	at org.openftc.easyopencv.OpenCvCameraBase$4.handle(OpenCvCameraBase.java:745)
+11-06 18:39:48.242  1960  2393 E RobotCore: 	at org.firstinspires.ftc.robotcore.external.function.Continuation$TrivialDispatcher.dispatch(Continuation.java:170)
+11-06 18:39:48.243  1960  2393 E RobotCore: 	at org.firstinspires.ftc.robotcore.external.function.Continuation.dispatch(Continuation.java:232)
+11-06 18:39:48.244  1960  2393 E RobotCore: 	at org.openftc.easyopencv.OpenCvCameraBase.handleFrameUserCrashable(OpenCvCameraBase.java:744)
+11-06 18:39:48.245  1960  2393 E RobotCore: 	at org.openftc.easyopencv.OpenCvCameraBase.handleFrame(OpenCvCameraBase.java:505)
+11-06 18:39:48.246  1960  2393 E RobotCore: 	at org.openftc.easyopencv.OpenCvWebcamImpl.onNewFrame(OpenCvWebcamImpl.java:588)
+11-06 18:39:48.247  1960  2393 E RobotCore: 	at org.firstinspires.ftc.robotcore.internal.camera.delegating.DelegatingCaptureSequence$InterveningCaptureCallback$1.handle(DelegatingCaptureSequence.java:291)
+11-06 18:39:48.248  1960  2393 E RobotCore: 	at org.firstinspires.ftc.robotcore.internal.camera.delegating.DelegatingCaptureSequence$InterveningCaptureCallback$1.handle(DelegatingCaptureSequence.java:286)
+11-06 18:39:48.249  1960  2393 E RobotCore: 	at org.firstinspires.ftc.robotcore.external.function.Continuation.dispatchHere(Continuation.java:241)
+11-06 18:39:48.250  1960  2393 E RobotCore: 	at org.firstinspires.ftc.robotcore.internal.camera.delegating.DelegatingCaptureSequence$InterveningCaptureCallback.onNewFrame(DelegatingCaptureSequence.java:285)
+11-06 18:39:48.251  1960  2393 E RobotCore: 	at org.firstinspires.ftc.robotcore.internal.camera.libuvc.api.UvcApiCameraCaptureSequence$1$1.handle(UvcApiCameraCaptureSequence.java:136)
+11-06 18:39:48.252  1960  2393 E RobotCore: 	at org.firstinspires.ftc.robotcore.internal.camera.libuvc.api.UvcApiCameraCaptureSequence$1$1.handle(UvcApiCameraCaptureSequence.java:132)
+11-06 18:39:48.252  1960  2393 E RobotCore: 	at org.firstinspires.ftc.robotcore.external.function.Continuation.dispatchHere(Continuation.java:241)
+11-06 18:39:48.253  1960  2393 E RobotCore: 	at org.firstinspires.ftc.robotcore.internal.camera.libuvc.api.UvcApiCameraCaptureSequence$1.accept(UvcApiCameraCaptureSequence.java:146)
+11-06 18:39:48.254  1960  2393 E RobotCore: 	at org.firstinspires.ftc.robotcore.internal.camera.libuvc.api.UvcApiCameraCaptureSequence$1.accept(UvcApiCameraCaptureSequence.java:123)
+11-06 18:39:48.255  1960  2393 E RobotCore: 	at org.firstinspires.ftc.robotcore.internal.camera.libuvc.nativeobject.UvcFrameCallback.onFrame(UvcFrameCallback.java:138)
+11-06 18:39:59.749  1960  2306 I FtcEventLoop: auto-stopping OpMode 'Hive Tip Detector'
+11-06 18:39:59.758  1960  2389 D RobotCore: User runOpModeMethod exited
+11-06 18:39:59.758  1960  2389 V RobotCore: thread: ...terminating 'OpModeThread'
+11-06 18:39:59.805  1960  4526 D UsbResiliantWebcam|DelCaptureSession: stopCapture()...
+11-06 18:39:59.805  1960  4526 D UsbResiliantWebcam|DelCaptureSequence: undoStreaming()...
+11-06 18:39:59.805  1960  4526 D UvcApiCaptureSession: stopCapture()...
+11-06 18:39:59.806  1960  4526 D Uvc     : [jni_streamhandle.cpp:184] Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcStreamHandle_nativeStopStreaming()...
+11-06 18:39:59.806  1960  4526 V Uvc     : API: Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcStreamHandle_nativeStopStreaming: enter...
+11-06 18:39:59.806  1960  4526 D Uvc     : [stream.cpp:1515] uvc_stream_stop()...
+11-06 18:39:59.806  1960  4526 D UvcStream: [stream.cpp:1543] cancelling extant transfers
+11-06 18:39:59.808  1960  4526 D Uvc     : [stream.cpp:1472] (waitForAllTransfers(waiting for cancelled transfers))...
+11-06 18:39:59.809  1960  4526 D UvcStream: [stream.cpp:1486] no extant active transfers: continuing
+11-06 18:39:59.809  1960  4526 D Uvc     : [stream.cpp:1472] ...()
+11-06 18:39:59.809  1960  4526 D Uvc     : [stream.cpp:1189] uvc_stream_handle::stopIsochronousStreaming()...
+11-06 18:39:59.809  1960  4526 D Uvc     : [libuvc_internal.h:747] uvc_device_handle::setInterfaceAltSetting(setInterfaceAltSetting(intf=1 alt=0))...
+11-06 18:39:59.809  1960  4526 D UvcDevice: setInterfaceAltSetting(1,0)
+11-06 18:39:59.826  1960  4526 D UvcDevice: setInterfaceAltSetting(1,0) succeeded
+11-06 18:39:59.826  1960  4526 D Uvc     : [libuvc_internal.h:747] ...uvc_device_handle::setInterfaceAltSetting() rc=0
+11-06 18:39:59.826  1960  4526 D Uvc     : [stream.cpp:1189] ...uvc_stream_handle::stopIsochronousStreaming() rc=0
+11-06 18:39:59.826  1960  4526 D UvcStream: [stream.cpp:1559] awakening user thread
+11-06 18:39:59.826  1960  4526 D UvcStream: [stream.cpp:1568] waiting for user callback thread to finish
+11-06 18:39:59.826  1960  2393 D UvcStream: [stream.cpp:1330] user callback thread stopped
+11-06 18:39:59.826  1960  4526 D Uvc     : [stream.cpp:1515] ...uvc_stream_stop() rc=0
+11-06 18:39:59.826  1960  4526 V Uvc     : API: Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcStreamHandle_nativeStopStreaming: ...exit
+11-06 18:39:59.826  1960  4526 D Uvc     : [jni_streamhandle.cpp:184] ...Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcStreamHandle_nativeStopStreaming()
+11-06 18:39:59.827  1960  4526 V UvcFrameCallback: destroy(hash=0x023a0574)
+11-06 18:39:59.828  1960  4526 V UvcFrameCallbackData: destroy(pointer=0x7752a10a10)
+11-06 18:39:59.828  1960  4526 V Uvc     : API: Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcFrameCallback_nativeReleaseCallbackState: enter...
+11-06 18:39:59.829  1960  4526 V Uvc     : API: Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcFrameCallback_nativeReleaseCallbackState: ...exit
+11-06 18:39:59.829  1960  4526 V UvcStreamHandle: destroy(pointer=0x7752dea400)
+11-06 18:39:59.829  1960  4526 D Uvc     : [jni_streamhandle.cpp:184] Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcStreamHandle_nativeStopStreaming()...
+11-06 18:39:59.829  1960  4526 V Uvc     : API: Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcStreamHandle_nativeStopStreaming: enter...
+11-06 18:39:59.829  1960  4526 D Uvc     : [stream.cpp:1515] uvc_stream_stop()...
+11-06 18:39:59.829  1960  4526 D Uvc     : [stream.cpp:1515] ...uvc_stream_stop() rc=0
+11-06 18:39:59.829  1960  4526 V Uvc     : API: Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcStreamHandle_nativeStopStreaming: ...exit
+11-06 18:39:59.829  1960  4526 D Uvc     : [jni_streamhandle.cpp:184] ...Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcStreamHandle_nativeStopStreaming()
+11-06 18:39:59.830  1960  4526 D Uvc     : [jni_streamhandle.cpp:200] Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcStreamHandle_nativeCloseStreamHandle()...
+11-06 18:39:59.830  1960  4526 V Uvc     : API: Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcStreamHandle_nativeCloseStreamHandle: enter...
+11-06 18:39:59.830  1960  4526 D Uvc     : [stream.cpp:1585] uvc_stream_close()...
+11-06 18:39:59.830  1960  4526 D Uvc     : [streamhandle.cpp:45] uvc_stream_handle::~uvc_stream_handle()...
+11-06 18:39:59.830  1960  4526 D Uvc     : [streamhandle.cpp:66] uvc_stream_handle::releaseInterface()...
+11-06 18:39:59.830  1960  4526 D Uvc     : [libuvc_internal.h:715] uvc_device_handle::releaseInterface()...
+11-06 18:39:59.830  1960  4526 D Uvc     : [libuvc_internal.h:729] CamCompatFeature::ResetAltSettingOnRelease() activated
+11-06 18:39:59.830  1960  4526 D Uvc     : [libuvc_internal.h:747] uvc_device_handle::setInterfaceAltSetting(setInterfaceAltSetting(intf=1 alt=0))...
+11-06 18:39:59.831  1960  4526 D UvcDevice: setInterfaceAltSetting(1,0)
+11-06 18:39:59.831  1960  4526 D UvcDevice: setInterfaceAltSetting(1,0) succeeded
+11-06 18:39:59.831  1960  4526 D Uvc     : [libuvc_internal.h:747] ...uvc_device_handle::setInterfaceAltSetting() rc=0
+11-06 18:39:59.832  1960  4526 D UvcDevice: releaseInterface(1)
+11-06 18:39:59.832  1960  4526 D UvcDevice: releaseInterface(1) succeeded
+11-06 18:39:59.832  1960  4526 D Uvc     : [libuvc_internal.h:715] ...uvc_device_handle::releaseInterface() rc=0
+11-06 18:39:59.832  1960  4526 D Uvc     : [streamhandle.cpp:66] ...uvc_stream_handle::releaseInterface()
+11-06 18:39:59.832  1960  4526 D Uvc     : [streamhandle.cpp:45] ...uvc_stream_handle::~uvc_stream_handle()
+11-06 18:39:59.832  1960  4526 D Uvc     : [stream.cpp:1585] ...uvc_stream_close()
+11-06 18:39:59.832  1960  4526 V Uvc     : API: Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcStreamHandle_nativeCloseStreamHandle: ...exit
+11-06 18:39:59.832  1960  4526 D Uvc     : [jni_streamhandle.cpp:200] ...Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcStreamHandle_nativeCloseStreamHandle()
+11-06 18:39:59.833  1960  2392 D RobotCore: capture sequence DelegatingCaptureSequenceId(1) reports completed: lastFrame=9270
+11-06 18:39:59.834  1960  4526 V UvcApiCameraCaptureSequence: destroy(hash=0x017cbc86)
+11-06 18:39:59.834  1960  4526 D UvcApiCaptureSession: ...stopCapture()
+11-06 18:39:59.834  1960  4526 D UvcApiCaptureSession: doClose()...
+11-06 18:39:59.836  1960  4526 D UvcApiCaptureSession: ...doClose()
+11-06 18:39:59.836  1960  4526 D UsbResiliantWebcam|DelCaptureSequence: ...undoStreaming()
+11-06 18:39:59.836  1960  4528 D UsbResiliantWebcam|DelCaptureSession: camera session is closed: Webcam(434E0600)
+11-06 18:39:59.837  1960  4528 V UvcApiCaptureSession: destroy(hash=0x04930961)
+11-06 18:39:59.837  1960  2392 D RobotCore: capture sequence DelegatingCaptureSequenceId(1) reports completed: lastFrame=9270
+11-06 18:39:59.837  1960  4528 D UvcApiCaptureSession: destructor...
+11-06 18:39:59.837  1960  4528 D UvcApiCaptureSession: ...destructor
+11-06 18:39:59.837  1960  4526 V UsbResiliantWebcam|DelCaptureSequence: destroy(hash=0x092f64c8)
+11-06 18:39:59.838  1960  4526 D UsbResiliantWebcam|DelCaptureSession: ...stopCapture()
+11-06 18:39:59.838  1960  4526 D UsbResiliantWebcam|DelCaptureSession: doClose()...
+11-06 18:39:59.838  1960  4526 D UsbResiliantWebcam|DelCaptureSession: ...doClose()
+11-06 18:39:59.839  1960  4526 V UsbResiliantWebcam|DelCaptureSession: destroy(hash=0x0f666eba)
+11-06 18:39:59.839  1960  4526 D UsbResiliantWebcam|DelCaptureSession: destructor()...
+11-06 18:39:59.839  1960  4526 D UsbResiliantWebcam|DelCaptureSession: ...destructor()
+11-06 18:39:59.840  1960  4526 V CameraImpl: destroy(hash=0x02e2bf4f)
+11-06 18:39:59.840  1960  4526 D UsbResiliantWebcam: CameraImpl.destructor()...
+11-06 18:39:59.840  1960  4526 D UsbResiliantWebcam: externalDestructor()...
+11-06 18:39:59.841  1960  4526 V CameraImpl: destroy(hash=0x08be6375)
+11-06 18:39:59.841  1960  4528 D CameraManager: camera reports closed: CameraImpl(UsbResiliantWebcam(Webcam(434E0600)))
+11-06 18:39:59.841  1960  4526 D UvcDeviceHandle: CameraImpl.destructor()...
+11-06 18:39:59.841  1960  4526 D UvcDeviceHandle: externalDestructor()...
+11-06 18:39:59.842  1960  4526 D UsbResiliantWebcam: changeDelegatedCamera(CameraImpl(UvcDeviceHandle(pointer=0x7752c931c0|UvcDevice(/dev/bus/usb/001/005)))->null)...
+11-06 18:39:59.843  1960  4526 D CachingExposureControl: onCameraChanged(CameraImpl(UvcDeviceHandle(pointer=0x7752c931c0|UvcDevice(/dev/bus/usb/001/005)))->null)...
+11-06 18:39:59.843  1960  4526 D CachingExposureControl: ...onCameraChanged(CameraImpl(UvcDeviceHandle(pointer=0x7752c931c0|UvcDevice(/dev/bus/usb/001/005)))->null)
+11-06 18:39:59.843  1960  4526 D UsbResiliantWebcam: ...changeDelegatedCamera(CameraImpl(UvcDeviceHandle(pointer=0x7752c931c0|UvcDevice(/dev/bus/usb/001/005)))->null)
+11-06 18:39:59.843  1960  4526 D UvcDeviceHandle: ...externalDestructor()
+11-06 18:39:59.843  1960  4526 V UvcDeviceHandle: destroy(pointer=0x7752c931c0)
+11-06 18:39:59.844  1960  4526 D UvcDeviceHandle: destructor...
+11-06 18:39:59.844  1960  4526 D Uvc     : [jni_devicehandle.cpp:86] Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcDeviceHandle_nativeReleaseRefDeviceHandle()...
+11-06 18:39:59.844  1960  4526 V Uvc     : API: Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcDeviceHandle_nativeReleaseRefDeviceHandle: enter...
+11-06 18:39:59.844  1960  4526 D Uvc     : [libuvc_internal.h:794] uvc_device_handle::~uvc_device_handle()...
+11-06 18:39:59.844  1960  4526 D Uvc     : [libuvc_internal.h:762] uvc_device_handle::deconstruct()...
+11-06 18:39:59.844  1960  4526 D Uvc     : [libuvc_internal.h:678] uvc_device_handle::stop()...
+11-06 18:39:59.844  1960  4526 D Uvc     : [libuvc_internal.h:678] ...uvc_device_handle::stop()
+11-06 18:39:59.844  1960  4526 D Uvc     : [libuvc_internal.h:787] uvc_device_handle::close()...
+11-06 18:39:59.845  1960  4526 E libusb  : [1092.105957] [000011ae] libusb: error [do_close] Device handle closed while transfer was still being processed, but the device is still connected as far as we know
+11-06 18:39:59.845  1960  4526 E libusb  : [1092.106034] [000011ae] libusb: error [do_close] A cancellation hasn't even been scheduled on the transfer for which the device is closing
+11-06 18:39:59.845  1960  4526 D Uvc     : [libuvc_internal.h:787] ...uvc_device_handle::close()
+11-06 18:39:59.845  1960  4526 D Uvc     : [libuvc_internal.h:762] ...uvc_device_handle::deconstruct()
+11-06 18:39:59.845  1960  4526 D Uvc     : [device.cpp:433] uvc_free_device_info()...
+11-06 18:39:59.845  1960  4526 D Uvc     : [device.cpp:433] ...uvc_free_device_info()
+11-06 18:39:59.846  1960  4526 D Uvc     : [libuvc_internal.h:794] ...uvc_device_handle::~uvc_device_handle()
+11-06 18:39:59.846  1960  4526 V Uvc     : API: Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcDeviceHandle_nativeReleaseRefDeviceHandle: ...exit
+11-06 18:39:59.846  1960  4526 D Uvc     : [jni_devicehandle.cpp:86] ...Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcDeviceHandle_nativeReleaseRefDeviceHandle()
+11-06 18:39:59.846  1960  4526 V UvcDevice: destroy(pointer=0x7752a500c0|/dev/bus/usb/001/005)
+11-06 18:39:59.846  1960  4526 D UsbDeviceConnectionJNI: close
+11-06 18:39:59.846  1960  4526 D Uvc     : [jni_device.cpp:126] Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcDevice_nativeReleaseRefDevice()...
+11-06 18:39:59.846  1960  4526 V Uvc     : API: Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcDevice_nativeReleaseRefDevice: enter...
+11-06 18:39:59.846  1960  4526 D Uvc     : [device.cpp:882] uvc_unref_device()...
+11-06 18:39:59.846  1960  4526 D Uvc     : [device.cpp:882] ...uvc_unref_device()
+11-06 18:39:59.846  1960  4526 V Uvc     : API: Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcDevice_nativeReleaseRefDevice: ...exit
+11-06 18:39:59.846  1960  4526 D Uvc     : [jni_device.cpp:126] ...Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_UvcDevice_nativeReleaseRefDevice()
+11-06 18:39:59.847  1960  4526 V LibUsbDevice: destroy(pointer=0x77727f9940)
+11-06 18:39:59.847  1960  4526 D Uvc     : [jni_libusb_device.cpp:64] Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_LibUsbDevice_nativeReleaseRefDevice()...
+11-06 18:39:59.847  1960  4526 D Uvc     : [jni_libusb_device.cpp:64] ...Java_org_firstinspires_ftc_robotcore_internal_camera_libuvc_nativeobject_LibUsbDevice_nativeReleaseRefDevice()
+11-06 18:39:59.847  1960  4526 D UvcDeviceHandle: ...destructor
+11-06 18:39:59.847  1960  4526 D UvcDeviceHandle: ...CameraImpl.destructor()
+11-06 18:39:59.847  1960  4526 D UsbResiliantWebcam: ...externalDestructor()
+11-06 18:39:59.847  1960  4526 V UsbResiliantWebcam: destroy(hash=0x06d3005f)
+11-06 18:39:59.848  1960  4526 D UsbResiliantWebcam: destructor()...
+11-06 18:39:59.848  1960  4526 D UsbResiliantWebcam: ...destructor()
+11-06 18:39:59.848  1960  4526 D UsbResiliantWebcam: ...CameraImpl.destructor()
+11-06 18:39:59.849  1960  2306 I RobotCore: ******************** STOP - OPMODE /storage/emulated/0/FIRST/matchlogs/Match-0-Hive_Tip_Detector.txt ********************
+11-06 18:39:59.854  1960  4529 I RobotCore: saving match logcat to /storage/emulated/0/FIRST/matchlogs/Match-0-Hive_Tip_Detector.txt
+11-06 18:39:59.854  1960  4529 I RobotCore: logging command line: exec logcat -d -T '11-6 18:22:4.000' -f '/storage/emulated/0/FIRST/matchlogs/Match-0-Hive_Tip_Detector.txt' -n4 -v threadtime UsbRequestJNI:S UsbRequest:S art:W ThreadPool:W System:W ExtendedExtractor:W OMXClient:W MediaPlayer:W dalvikvm:W  *:V
+11-06 18:39:59.861  1960  2306 I RobotCore: Attempting to switch to OpMode $Stop$Robot$
+11-06 18:39:59.865  1960  2306 D HardwareMap: Clearing which device instances have been retrieved
+11-06 18:39:59.871  1960  4533 V RobotCore: thread: 'OpModeThread' starting...
+11-06 18:39:59.868  4530  4530 I sh      : type=1400 audit(0.0:226): avc: denied { read } for name="/" dev="rootfs" ino=1 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=1
+11-06 18:39:59.868  4530  4530 I sh      : type=1400 audit(0.0:227): avc: denied { open } for path="/" dev="rootfs" ino=1 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=1
+11-06 18:39:59.882  1960  2289 V Robocol : sending CMD_STREAM_CHANGE(17086), attempt: 0
+11-06 18:39:59.883  1960  2289 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(17095), attempt: 0
+11-06 18:39:59.884  1960  2289 V Robocol : sending CMD_NOTIFY_RUN_OP_MODE(17097), attempt: 0

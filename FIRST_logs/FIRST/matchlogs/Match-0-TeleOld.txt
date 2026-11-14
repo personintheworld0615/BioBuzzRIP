@@ -1,0 +1,49 @@
+--------- beginning of main
+08-22 13:17:03.583   976  1176 D HardwareMap: Clearing which device instances have been retrieved
+08-22 13:17:03.586   976  1163 W art     : Long monitor contention with owner EventLoop (1176) at void com.qualcomm.robotcore.eventloop.EventLoopManager$EventLoopRunnable$1.run()(EventLoopManager.java:323) waiters=0 in org.firstinspires.ftc.robotcore.internal.network.CallbackResult com.qualcomm.robotcore.eventloop.EventLoopManager.commandEvent(com.qualcomm.robotcore.robocol.Command) for 1.402s
+08-22 13:17:03.587   976  1231 V RobotCore: thread: 'OpModeThread' starting...
+08-22 13:17:03.596   976  1163 E Robocol : command processing took 1411 ms: command=CMD_SET_MATCH_NUMBER
+08-22 13:17:03.608   976  1189 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(609), attempt: 0
+08-22 13:17:03.646   976  1231 V RobotCore: thread: ...terminating 'OpModeThread'
+08-22 13:17:03.647   976  1176 I RobotCore: Attempting to switch to OpMode TeleOld
+08-22 13:17:03.650   976  1176 I RobotCore: ******************** START - OPMODE TeleOld ********************
+08-22 13:17:05.204   976  1176 D HardwareMap: Clearing which device instances have been retrieved
+08-22 13:17:05.207   976  1233 V RobotCore: thread: 'OpModeThread' starting...
+08-22 13:17:05.208   976  1189 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(637), attempt: 0
+08-22 13:17:11.736   976  1162 V Robocol : received command: CMD_RUN_OP_MODE(10619) TeleOld
+08-22 13:17:11.746   976  1233 V RobotCore: thread: ...terminating 'OpModeThread'
+08-22 13:17:11.751   976  1176 E OpModeManager: User code threw an uncaught exception
+08-22 13:17:11.757   976  1176 E OpModeManager: java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.Object com.qualcomm.robotcore.hardware.HardwareMap.get(java.lang.Class, java.lang.String)' on a null object reference
+08-22 13:17:11.758   976  1176 E OpModeManager: 	at org.firstinspires.ftc.teamcode.Telem.<init>(Telem.java:24)
+08-22 13:17:11.758   976  1176 E OpModeManager: 	at org.firstinspires.ftc.teamcode.TeleopOld.runOpMode(TeleopOld.java:26)
+08-22 13:17:11.759   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.LinearOpMode.internalRunOpMode(LinearOpMode.java:199)
+08-22 13:17:11.760   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$1$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:184)
+08-22 13:17:11.761   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+08-22 13:17:11.762   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool.logThreadLifeCycle(ThreadPool.java:737)
+08-22 13:17:11.763   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$2$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:182)
+08-22 13:17:11.764   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+08-22 13:17:11.764   976  1176 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1133)
+08-22 13:17:11.765   976  1176 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:607)
+08-22 13:17:11.766   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool$ThreadFactoryImpl$1.run(ThreadPool.java:793)
+08-22 13:17:11.766   976  1176 E OpModeManager: 	at java.lang.Thread.run(Thread.java:761)
+08-22 13:17:11.769   976  1189 V Robocol : sending CMD_NOTIFY_RUN_OP_MODE(706), attempt: 0
+08-22 13:17:11.770   976  1189 V Robocol : sending CMD_SHOW_STACKTRACE(707), attempt: 0
+08-22 13:17:11.778   976  1176 E OpModeManager: User code threw an uncaught exception
+08-22 13:17:11.781   976  1176 E OpModeManager: java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.Object com.qualcomm.robotcore.hardware.HardwareMap.get(java.lang.Class, java.lang.String)' on a null object reference
+08-22 13:17:11.781   976  1176 E OpModeManager: 	at org.firstinspires.ftc.teamcode.Telem.<init>(Telem.java:24)
+08-22 13:17:11.782   976  1176 E OpModeManager: 	at org.firstinspires.ftc.teamcode.TeleopOld.runOpMode(TeleopOld.java:26)
+08-22 13:17:11.783   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.LinearOpMode.internalRunOpMode(LinearOpMode.java:199)
+08-22 13:17:11.785   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$1$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:184)
+08-22 13:17:11.785   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+08-22 13:17:11.787   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool.logThreadLifeCycle(ThreadPool.java:737)
+08-22 13:17:11.788   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$2$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:182)
+08-22 13:17:11.789   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+08-22 13:17:11.790   976  1176 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1133)
+08-22 13:17:11.791   976  1176 E OpModeManager: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:607)
+08-22 13:17:11.792   976  1176 E OpModeManager: 	at com.qualcomm.robotcore.util.ThreadPool$ThreadFactoryImpl$1.run(ThreadPool.java:793)
+08-22 13:17:11.793   976  1176 E OpModeManager: 	at java.lang.Thread.run(Thread.java:761)
+08-22 13:17:11.794   976  1176 I RobotCore: Attempting to switch to OpMode $Stop$Robot$
+08-22 13:17:11.797   976  1176 I RobotCore: ******************** STOP - OPMODE /storage/emulated/0/FIRST/matchlogs/Match-0-TeleOld.txt ********************
+08-22 13:17:11.804   976  1237 I RobotCore: saving match logcat to /storage/emulated/0/FIRST/matchlogs/Match-0-TeleOld.txt
+08-22 13:17:11.804   976  1237 I RobotCore: logging command line: exec logcat -d -T '8-22 13:17:3.000' -f '/storage/emulated/0/FIRST/matchlogs/Match-0-TeleOld.txt' -n4 -v threadtime UsbRequestJNI:S UsbRequest:S art:W ThreadPool:W System:W ExtendedExtractor:W OMXClient:W MediaPlayer:W dalvikvm:W  *:V
+08-22 13:17:11.808   976  1189 V Robocol : sending CMD_SHOW_STACKTRACE(710), attempt: 0
