@@ -8,11 +8,12 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp(name = "RealTeleop")
 public class TestTeleop extends LinearOpMode {
-
+    public static final double LIMIT = 0.99; //Limit to the motor power.
     @Override
     public void runOpMode() throws InterruptedException {
 
         DcMotor leftFront, leftBack, rightFront, rightBack;
+
 
         leftFront = hardwareMap.get(DcMotor.class, "frontLeftMotor");
         leftBack = hardwareMap.get(DcMotor.class, "backLeftMotor");
@@ -38,10 +39,10 @@ public class TestTeleop extends LinearOpMode {
 
             double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
 
-            double frontLeftPower = (y + x + rx) / denominator;
-            double backLeftPower = (y - x + rx) / denominator;
-            double frontRightPower = (y - x - rx) / denominator;
-            double backRightPower = (y + x - rx) / denominator;
+            double frontLeftPower = ((y + x + rx) / denominator) * LIMIT;
+            double backLeftPower = ((y - x + rx) / denominator) * LIMIT;
+            double frontRightPower = ((y - x - rx) / denominator) * LIMIT;
+            double backRightPower = ((y + x - rx) / denominator) * LIMIT;
 
             leftFront.setPower(frontLeftPower);
             leftBack.setPower(backLeftPower);
