@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.Opmodes.Prod.Teleop;
 
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 @TeleOp(name = "RealTeleop")
 public class TestTeleop extends LinearOpMode {
@@ -28,11 +30,10 @@ public class TestTeleop extends LinearOpMode {
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         waitForStart();
-
+        telemetry.addLine("Waiting for Start");
         while(opModeIsActive()){
 
             //loop
-
             double y = -gamepad1.left_stick_y;
             double x = gamepad1.left_stick_x;
             double rx = gamepad1.right_stick_x;
@@ -48,6 +49,11 @@ public class TestTeleop extends LinearOpMode {
             leftBack.setPower(backLeftPower);
             rightFront.setPower(frontRightPower);
             rightBack.setPower(backRightPower);
+            telemetry.addData("Limit: ", LIMIT);
+            telemetry.addData("FL Power: ", frontLeftPower);
+            telemetry.addData("BL Power: ", backLeftPower);
+            telemetry.addData("FR Power: ", frontRightPower);
+            telemetry.addData("BR Power: ", backRightPower);
 
         }
 
