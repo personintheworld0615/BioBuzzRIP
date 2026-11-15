@@ -17,6 +17,7 @@ public class Shooter {
         OFF, MANUAL, LOOKUP
     }
     public DcMotorEx shooter1;
+
     public DcMotorEx shooter2;
     public Servo linkage;
 
