@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.robot.subsystem;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.pedropathing.follower.Follower;
@@ -25,7 +24,7 @@ public class Drivetrain {
 
 
 
-    public Drivetrain(Follower follower) {
+    public Drivetrain(HardwareMap hardwareMap, Follower follower) {
 
         rightBack = hardwareMap.get(DcMotor.class, "backRightMotor");
         rightFront = hardwareMap.get(DcMotor.class, "frontRightMotor");

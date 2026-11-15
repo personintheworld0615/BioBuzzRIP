@@ -55,7 +55,7 @@ public class StateMachineMain {
         shooter = new Shooter(hardwareMap);
         intake = new Intake(driver, operator);
         turret = new Turret(follower, hardwareMap);
-        drivetrain = new Drivetrain(this.follower);
+        drivetrain = new Drivetrain(hardwareMap, this.follower);
 
         initializeCommands();
     }
@@ -82,7 +82,7 @@ public class StateMachineMain {
 
         // Drivetrain
         drive = loop(infinite(
-                () -> drivetrain.combinedDrive(driver)
+                () -> drivetrain.manualDrive(driver)
         ));
 
 
@@ -135,7 +135,7 @@ public class StateMachineMain {
 
 
     // Handle gamepad inputs
-    public void Placeholder(Gamepad gamepad1, Gamepad gamepad2) {
+    public void Placeholder() {
 
 
 
@@ -167,9 +167,9 @@ public class StateMachineMain {
         }
     }
 
-    public void update(Gamepad gamepad1, Gamepad gamepad2) {
-        follower.update();
-        Placeholder(gamepad1, gamepad2);
+    public void update() {
+//        follower.update();
+        Placeholder();
         Scheduler.execute();
     }
 
