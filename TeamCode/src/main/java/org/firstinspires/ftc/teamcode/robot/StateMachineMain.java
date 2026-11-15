@@ -11,19 +11,21 @@ import com.pedropathing.follower.Follower;
 import com.pedropathing.ivy.Command;
 import com.pedropathing.ivy.Scheduler;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.robot.subsystem.Drivetrain;
 import org.firstinspires.ftc.teamcode.robot.subsystem.Intake;
-import org.firstinspires.ftc.teamcode.robot.subsystem.Outtake;
+import org.firstinspires.ftc.teamcode.robot.subsystem.Shooter;
 import org.firstinspires.ftc.teamcode.robot.subsystem.Turret;
 
 public class StateMachineMain {
 
     // Subsystems
-    public Outtake outtake;
+    public Shooter shooter;
     public Intake intake;
     public Turret turret;
     public Drivetrain drivetrain;
+    public Follower follower;
 
     // Gamepads
     private Gamepad driver;
@@ -42,16 +44,18 @@ public class StateMachineMain {
     private Command outtakestuff;
 
 
+
     // Constructor
-    public StateMachineMain(Follower follower, Gamepad gamepad1, Gamepad gamepad2) {
+    public StateMachineMain(HardwareMap hardwareMap, Follower follower, Gamepad gamepad1, Gamepad gamepad2) {
 
         driver = gamepad1;
         operator = gamepad2;
+        this.follower = follower;
 
-        outtake = new Outtake();
+        shooter = new Shooter(hardwareMap);
         intake = new Intake(driver, operator);
-        turret = new Turret(follower);
-        drivetrain = new Drivetrain(follower);
+        turret = new Turret(follower, hardwareMap);
+        drivetrain = new Drivetrain(this.follower);
 
         initializeCommands();
     }
@@ -69,7 +73,7 @@ public class StateMachineMain {
 
         // Turret
         turretStuff = sequential(
-                turret.manualCommand().until(() -> driver.rightBumperWasPressed()),
+                turret.defaultCommand().until(() -> driver.rightBumperWasPressed()),
                 turret.aimCommand().until(() -> driver.rightBumperWasPressed())
         );
 
@@ -86,24 +90,25 @@ public class StateMachineMain {
         prepshootingtime = Command.build()
                 .setExecute(() -> {
                     intake.setPowers(1.0, -0.3);
-                    outtake.spinToRpm(3200);
+                    shooter.spinToRpm(3200);
                 })
                 .setPriority(50)
-                .requiring(intake, outtake);
+                .requiring(intake, shooter);
 
 
         // Shooting
         shoot = Command.build()
                 .setExecute(() -> {
                     intake.setPowers(1.0, 1.0);
-                    outtake.spinToRpm(3200);
+                    shooter.spinToRpm(3200);
                 })
+                //TODO: conditional intake & transfer spin up which depends on calculated requried PRM being atl somewhat reached
                 .setEnd(endCondition -> {
                     intake.setPowers(0, 0);
-                    outtake.stop();
+                    shooter.stop();
                 })
                 .setPriority(50)
-                .requiring(intake, outtake);
+                .requiring(intake, shooter);
 
 
         // Complete shooting sequence
@@ -122,7 +127,7 @@ public class StateMachineMain {
 
                         instant(() -> {
                             intake.stop();
-                            outtake.stop();
+                            shooter.stop();
                         })
                 )
         );
@@ -161,4 +166,11 @@ public class StateMachineMain {
             outtakestuff.schedule();
         }
     }
+
+    public void update(Gamepad gamepad1, Gamepad gamepad2) {
+        follower.update();
+        Placeholder(gamepad1, gamepad2);
+        Scheduler.execute();
+    }
+
 }
