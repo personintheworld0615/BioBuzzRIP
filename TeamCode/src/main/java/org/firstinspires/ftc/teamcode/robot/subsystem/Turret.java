@@ -16,17 +16,10 @@ public class Turret{
     Follower follower;
     Pose goal;
 
-    // Tune these with ShooterTest, then copy them in here.
-    // Servo position where the turret points straight forward.
     public static double SERVO_CENTER = 0.5;
-    // Turret degrees covered by the servo's full 0 to 1 travel.
     public static double SERVO_RANGE_DEG = 360;
-    // Tick if a positive (counterclockwise) angle turns the turret clockwise.
     public static boolean SERVO_REVERSED = false;
-    // Share of the camera's bearing added to the vision trim per frame. Lower it if the turret
-    // overshoots, the servo is still moving when the next frame arrives.
     public static double VISION_GAIN = 0.5;
-    // Largest correction vision may add on top of the odometry aim.
     public static double VISION_MAX_TRIM_DEG = 30;
 
     private double visionTrimDeg = 0;
