@@ -11,14 +11,15 @@ public class Intake {
 
     private DcMotor intake;
     private DcMotor transfer;
-    private Gamepad gamepad1;
-    private Gamepad gamepad2;
+    private Gamepad driver;
+    private Gamepad operator;
 
 
     public Intake(Gamepad gamepad1, Gamepad gamepad2) {
         intake = hardwareMap.get(DcMotor.class, "intake");
         transfer = hardwareMap.get(DcMotor.class, "transfer");
-
+        driver = gamepad1;
+        operator  = gamepad2;
         // Motor configuration
         intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         intake.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -36,7 +37,7 @@ public class Intake {
                     intake.setPower(1);
                     transfer.setPower(1);
                 })
-                .setDone(()-> gamepad2.left_trigger<0.2)
+                .setDone(()-> operator.left_trigger<0.2)
                 .setEnd(endCondition -> {
                     if(endCondition == EndCondition.NATURALLY){
                         stop();
