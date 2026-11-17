@@ -168,6 +168,7 @@ public class Robot {
     }
 
     public void update() {
+        //why comment out follower?
 //        follower.update();
         MainLoop();
         Scheduler.execute();
