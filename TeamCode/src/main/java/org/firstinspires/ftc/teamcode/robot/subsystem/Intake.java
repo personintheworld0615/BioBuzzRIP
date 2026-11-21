@@ -37,7 +37,7 @@ public class Intake {
                     intake.setPower(1);
                     transfer.setPower(1);
                 })
-                .setDone(()-> operator.left_trigger<0.2)
+                .setDone(()-> driver.left_trigger<0.2)
                 .setEnd(endCondition -> {
                     if(endCondition == EndCondition.NATURALLY){
                         stop();
