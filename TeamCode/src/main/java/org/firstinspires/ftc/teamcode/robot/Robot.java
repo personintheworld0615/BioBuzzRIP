@@ -46,15 +46,15 @@ public class Robot {
 
 
     // Constructor
-    public Robot(HardwareMap hardwareMap, Follower follower, Gamepad gamepad1, Gamepad gamepad2) {
+    public Robot(HardwareMap hardwareMap, Follower follower, Gamepad gamepad1, Gamepad gamepad2,boolean red) {
 
         driver = gamepad1;
         operator = gamepad2;
         this.follower = follower;
 
-        shooter = new Shooter(hardwareMap);
+        shooter = new Shooter(hardwareMap,follower,red);
         intake = new Intake(hardwareMap, driver, operator);
-        turret = new Turret(follower, hardwareMap);
+        turret = new Turret(follower, hardwareMap,red);
         drivetrain = new Drivetrain(hardwareMap, this.follower);
 
         initializeCommands();
@@ -81,7 +81,7 @@ public class Robot {
 
         // Drivetrain
         drive = loop(infinite(
-                () -> drivetrain.manualDrive(driver)
+                () -> drivetrain.combinedDrive(driver)
         ));
 
 
@@ -89,7 +89,7 @@ public class Robot {
         prepshootingtime = Command.build()
                 .setExecute(() -> {
                     intake.setPowers(1.0, -0.3);
-                    shooter.spinToRpm(3200);
+                    shooter.spinToRpm();
                 })
                 .setPriority(50)
                 .requiring(intake, shooter);
@@ -99,9 +99,8 @@ public class Robot {
         shoot = Command.build()
                 .setExecute(() -> {
                     intake.setPowers(1.0, 1.0);
-                    shooter.spinToRpm(3200);
+                    shooter.spinToRpm();
                 })
-                //TODO: conditional intake & transfer spin up which depends on calculated requried PRM being atl somewhat reached
                 .setEnd(endCondition -> {
                     intake.setPowers(0, 0);
                     shooter.stop();

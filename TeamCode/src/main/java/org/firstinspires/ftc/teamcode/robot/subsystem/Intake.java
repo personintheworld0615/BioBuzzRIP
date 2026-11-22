@@ -63,24 +63,6 @@ public class Intake {
 
         return reverse;
     }
-    public Command powerCommand(double intakePower, double transferPower) {
-        return Command.build()
-                .setExecute(() -> setPowers(intakePower, transferPower))
-                .setEnd(endCondition -> stop())
-                .requiring(this);
-    }
-    public Command setTransferPower(double power){
-        return Command.build()
-                .setExecute(()->transfer.setPower(power))
-                .setEnd(endCondition -> stop())
-                .requiring(this);
-    }
-    public Command setIntakePower(double power){
-        return Command.build()
-                .setExecute(()->intake.setPower(power))
-                .setEnd(endCondition -> stop())
-                .requiring(this);
-    }
     public void stop(){
         intake.setPower(0);
         transfer.setPower(0);
