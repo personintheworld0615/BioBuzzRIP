@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.opmodes.Testers;
+package org.firstinspires.ftc.teamcode.Opmodes.Testers;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.pedropathing.follower.Follower;

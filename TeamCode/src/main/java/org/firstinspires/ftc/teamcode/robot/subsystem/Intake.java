@@ -1,11 +1,11 @@
 package org.firstinspires.ftc.teamcode.robot.subsystem;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
-
 import com.pedropathing.ivy.Command;
 import com.pedropathing.ivy.behaviors.EndCondition;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+
 
 public class Intake {
 
@@ -15,7 +15,7 @@ public class Intake {
     private Gamepad operator;
 
 
-    public Intake(Gamepad gamepad1, Gamepad gamepad2) {
+    public Intake(HardwareMap hardwareMap , Gamepad gamepad1, Gamepad gamepad2) {
         intake = hardwareMap.get(DcMotor.class, "intake");
         transfer = hardwareMap.get(DcMotor.class, "transfer");
         driver = gamepad1;
@@ -62,6 +62,24 @@ public class Intake {
                 .requiring(this);
 
         return reverse;
+    }
+    public Command powerCommand(double intakePower, double transferPower) {
+        return Command.build()
+                .setExecute(() -> setPowers(intakePower, transferPower))
+                .setEnd(endCondition -> stop())
+                .requiring(this);
+    }
+    public Command setTransferPower(double power){
+        return Command.build()
+                .setExecute(()->transfer.setPower(power))
+                .setEnd(endCondition -> stop())
+                .requiring(this);
+    }
+    public Command setIntakePower(double power){
+        return Command.build()
+                .setExecute(()->intake.setPower(power))
+                .setEnd(endCondition -> stop())
+                .requiring(this);
     }
     public void stop(){
         intake.setPower(0);

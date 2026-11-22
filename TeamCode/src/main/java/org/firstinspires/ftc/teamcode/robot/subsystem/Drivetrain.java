@@ -5,6 +5,8 @@ import com.acmerobotics.dashboard.config.Config;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -12,32 +14,40 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 @Config
 public class Drivetrain {
-    private final Follower follower = null;
+    private Follower follower;
 
     private static double kp = 3.0;
 
 
-    public DcMotor leftFront;
-    public DcMotor rightFront;
-    public DcMotor leftBack;
-    public DcMotor rightBack;
+    public DcMotorEx leftFront;
+    public DcMotorEx rightFront;
+    public DcMotorEx leftBack;
+    public DcMotorEx rightBack;
 
 
 
     public Drivetrain(HardwareMap hardwareMap, Follower follower) {
 
-        rightBack = hardwareMap.get(DcMotor.class, "backRightMotor");
-        rightFront = hardwareMap.get(DcMotor.class, "frontRightMotor");
-        leftBack = hardwareMap.get(DcMotor.class, "backLeftMotor");
-        leftFront = hardwareMap.get(DcMotor.class, "frontLeftMotor");
+        rightBack = hardwareMap.get(DcMotorEx.class, "backRightMotor");
+        rightFront = hardwareMap.get(DcMotorEx.class, "frontRightMotor");
+        leftBack = hardwareMap.get(DcMotorEx.class, "backLeftMotor");
+        leftFront = hardwareMap.get(DcMotorEx.class, "frontLeftMotor");
+
+        leftFront.setDirection(DcMotorEx.Direction.REVERSE);
+        leftBack.setDirection(DcMotorEx.Direction.REVERSE);
+        rightFront.setDirection(DcMotorEx.Direction.FORWARD);
+        rightBack.setDirection(DcMotorEx.Direction.FORWARD);
+
+        leftFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        leftBack.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        rightFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        rightBack.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+
+        this.follower = follower;
 
     }
 
 
-
-    // ----------------------------------------
-    // MANUAL DRIVE (converted from your old Drive.java)
-    // ----------------------------------------
     public void manualDrive(Gamepad gamepad1) {
         double y = -gamepad1.left_stick_y;
         double x = gamepad1.left_stick_x * 1.1;
@@ -50,10 +60,25 @@ public class Drivetrain {
         rightFront.setPower((y - x - rx) / denominator);
         rightBack.setPower((y + x - rx) / denominator);
     }
+
+    public void drive(Gamepad gamepad1){
+        follower.manual(-gamepad1.left_stick_y, -gamepad1.left_stick_x*1.1, -gamepad1.right_stick_x);
+    }
+    public void stop() {
+        leftFront.setPower(0);
+        leftBack.setPower(0);
+        rightFront.setPower(0);
+        rightBack.setPower(0);
+    }
+
+
+    //kind or redundant because any class that passes in follower (which is required to pass in) can jsut use follower.pose
     public Pose getPose(){
         return follower.pose();
     }
 
+
+    // WTH is the pnt of this?
     public void combinedDrive(Gamepad gamepad) {
         double forward = -gamepad.left_stick_y;
         double lateral = gamepad.left_stick_x;

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.opmodes.Testers;
+package org.firstinspires.ftc.teamcode.Opmodes.Testers;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
@@ -8,10 +8,10 @@ import com.pedropathing.ivy.Scheduler;
 import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Utility;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Util.Constants;
 import org.firstinspires.ftc.teamcode.Util.MyTelem;
+import org.firstinspires.ftc.teamcode.robot.Robot;
 import org.firstinspires.ftc.teamcode.robot.subsystem.Camera;
 import org.firstinspires.ftc.teamcode.robot.subsystem.Shooter;
 import org.firstinspires.ftc.teamcode.robot.subsystem.Turret;
@@ -38,8 +38,7 @@ public class ShooterTest extends LinearOpMode {
     // STATE 5 only: tick to save SHOOTER_RPM at the current distance; it unticks itself.
     public static boolean SAVE_POINT = false;
 
-    private DcMotor intakeMotor;
-    private DcMotor transferMotor;
+    private Robot robot;
     private Follower follower;
     private Shooter shooter;
     private Turret turret;
@@ -55,8 +54,6 @@ public class ShooterTest extends LinearOpMode {
     private Command turretAimWithVision;
     private Command tipDetection;
     private Command[] stateCommands;
-
-    private boolean red;
     private int activeState = -1;
     private String lastSave = "None yet";
 
@@ -65,31 +62,29 @@ public class ShooterTest extends LinearOpMode {
         MyTelem.init(telemetry);
         Scheduler.reset();
 
-        intakeMotor   = hardwareMap.get(DcMotor.class, "intake");
-        transferMotor = hardwareMap.get(DcMotor.class, "transfer");
-        intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        transferMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
+        // Creating the follower also sets the drive motor directions from Constants.
         follower = Constants.createFollower(hardwareMap);
-        shooter = new Shooter(hardwareMap);
-        turret = new Turret(follower, hardwareMap);
+        robot = new Robot(hardwareMap, follower, gamepad1, gamepad2);
+        shooter = robot.shooter;
+        turret = robot.turret;
+        // we need to program the camera into the robot class but we'll do that sunday night
         camera = new Camera(hardwareMap, RED_ALLIANCE);
         buildCommands();
 
-        MyTelem.addLine("Set the START pose and RED_ALLIANCE on Dashboard, then press START.");
-        MyTelem.addLine("STATE 0 lists what each state does.");
+        MyTelem.addLine("Set the start psoe & RED_ALLIANCE boolean");
+        MyTelem.addLine("switch into 0");
         MyTelem.update();
 
         waitForStart();
 
-        red = RED_ALLIANCE;
-        camera.setRedAlliance(red);
+        camera.setRedAlliance(RED_ALLIANCE);
         follower.setPose(new Pose(START_X, START_Y, Math.toRadians(START_HEADING_DEG)));
 
         // These run in every state and are scheduled first, so the pose and camera are fresh
-        // before the state's commands read them each loop.
+        // before the state's commands read them each loop. Only the localizer updates: an idle
+        // follower.update() would stop the drive motors that Robot's drive command is setting.
         Scheduler.schedule(
-                Command.build().setExecute(follower::update),
+                Command.build().setExecute(follower.localizer::update),
                 camera.updateCommand());
 
         while (opModeIsActive()) {
@@ -99,6 +94,7 @@ public class ShooterTest extends LinearOpMode {
             }
             handleSavePoint();
             MyTelem.addData("STATE", STATE);
+            camera.setRedAlliance(RED_ALLIANCE);
 
             switch (STATE) {
                 case 0:
@@ -194,27 +190,12 @@ public class ShooterTest extends LinearOpMode {
     }
 
     private void buildCommands() {
-        drive = Command.build()
-                .setExecute(() -> follower.manual(
-                        -gamepad1.left_stick_y,
-                        gamepad1.left_stick_x,
-                        gamepad1.right_stick_x))
-                .setEnd(endCondition -> follower.manual(0, 0, 0))
-                .requiring(follower);
-        feed = Command.build()
-                .setExecute(() -> {
-                    intakeMotor.setPower(INTAKE_POWER);
-                    transferMotor.setPower(TRANSFER_POWER);
-                })
-                .setEnd(endCondition -> {
-                    intakeMotor.setPower(0);
-                    transferMotor.setPower(0);
-                })
-                .requiring(intakeMotor, transferMotor);
+        drive = robot.getDriveCommand();
+        feed = robot.intake.powerCommand(INTAKE_POWER, TRANSFER_POWER);
         shooterManual = shooter.spinToRpmCommand(() -> SHOOTER_RPM);
         shooterRecord = shooter.spinToRpmCommand(
-                () -> SHOOTER_RPM > 0 ? SHOOTER_RPM : shooter.distanceToRPM(distanceToGoal()));
-        shooterLookup = shooter.lookupCommand(this::distanceToGoal);
+                () -> SHOOTER_RPM > 0 ? SHOOTER_RPM : shooter.distanceToRPM(distanceToHive()));
+        shooterLookup = shooter.lookupCommand(this::distanceToHive);
         turretAim = turret.aimCommand();
         turretAimWithVision = turret.aimWithVisionCommand(camera);
         tipDetection = camera.tipDetectionCommand();
@@ -232,22 +213,24 @@ public class ShooterTest extends LinearOpMode {
         }
     }
 
-    // Cancelling runs each command's end, which stops the motors it was driving.
+    // Cancelling runs each command's end, which stops the motors it was driving. Robot's drive
+    // has no end, so the drive motors are stopped here.
     private void cancelStateCommands() {
         for (Command command : stateCommands) {
             command.cancel();
         }
+        robot.drivetrain.stop();
     }
 
     private Pose hiveGoal() {
-        double x = red ? Constants.RED_HIVE_X : Constants.BLUE_HIVE_X;
+        double x = RED_ALLIANCE ? Constants.RED_HIVE_X : Constants.BLUE_HIVE_X;
         double y = camera.getTipSide() == Camera.TipSide.STARTING
-                ? (red ? Constants.RED_STARTING_CELL_Y : Constants.BLUE_STARTING_CELL_Y)
-                : (red ? Constants.RED_SECONDARY_CELL_Y : Constants.BLUE_SECONDARY_CELL_Y);
+                ? (RED_ALLIANCE ? Constants.RED_STARTING_CELL_Y : Constants.BLUE_STARTING_CELL_Y)
+                : (RED_ALLIANCE ? Constants.RED_SECONDARY_CELL_Y : Constants.BLUE_SECONDARY_CELL_Y);
         return new Pose(x, y);
     }
 
-    private double distanceToGoal() {
+    private double distanceToHive() {
         Pose pose = follower.pose();
         Pose goal = hiveGoal();
         return Math.hypot(goal.x() - pose.x(), goal.y() - pose.y());
@@ -265,9 +248,9 @@ public class ShooterTest extends LinearOpMode {
 
     private String savePoint() {
         if (SHOOTER_RPM <= 0) {
-            return "Not saved: set SHOOTER_RPM to the RPM that scores from here";
+            return "RETARD YOUR RPM <= 0 ";
         }
-        double distance = Math.round(distanceToGoal() * 10) / 10.0;
+        double distance = Math.round(distanceToHive() * 10) / 10.0;
         int slot = shooter.recordPoint(distance, SHOOTER_RPM);
         if (slot < 0) {
             return "Not saved: table full, set an RPM to 0 under Constants to free a slot";
@@ -275,9 +258,7 @@ public class ShooterTest extends LinearOpMode {
         return String.format(Locale.US, "Slot %d: %.1f in -> %.0f RPM", slot, distance, SHOOTER_RPM);
     }
 
-    // =======================
-    //  Telemetry
-    // =======================
+    //  THESE ARE THE Telemetry METHODS
 
     private void addStateGuide() {
 
@@ -294,11 +275,11 @@ public class ShooterTest extends LinearOpMode {
     private void addPoseTelemetry() {
         Pose pose = follower.pose();
         Pose goal = hiveGoal();
-        MyTelem.addData("Alliance", red ? "RED" : "BLUE");
+        MyTelem.addData("Alliance", RED_ALLIANCE ? "RED" : "BLUE");
         MyTelem.addData("Pose", String.format(Locale.US, "(%.1f, %.1f) %.1f deg",
                 pose.x(), pose.y(), Math.toDegrees(pose.heading())));
         MyTelem.addData("Goal", String.format(Locale.US, "(%.1f, %.1f)", goal.x(), goal.y()));
-        MyTelem.addData("Distance to Goal (in)", distanceToGoal());
+        MyTelem.addData("Distance to Goal (in)", distanceToHive());
     }
 
     private void addTurretTelemetry() {
@@ -324,11 +305,10 @@ public class ShooterTest extends LinearOpMode {
     }
 
     private void addLookupTelemetry() {
-        MyTelem.addData("Table RPM Here", shooter.distanceToRPM(distanceToGoal()));
+        MyTelem.addData("Table RPM Here", shooter.distanceToRPM(distanceToHive()));
         MyTelem.addData("Last Save", lastSave);
     }
-
-    // Dashboard and SAVE_POINT changes only live in memory and are gone once the robot restarts.
+    //making this as idiot proof as possible lmao
     private void addCopyBeforeStopping(String... lines) {
         MyTelem.addLine("");
         MyTelem.addLine("=== COPY INTO CODE BEFORE STOPPING ===");
