@@ -12,8 +12,9 @@ public class TeleopBlue extends LinearOpMode {
     private Follower follower;
     @Override
     public void runOpMode() throws InterruptedException {
+
         follower = Constants.create(hardwareMap);
-        Robot main = new Robot(
+        Robot robot = new Robot(
                 hardwareMap,
                 follower,
                 gamepad1,
@@ -23,7 +24,7 @@ public class TeleopBlue extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            main.update();
+            robot.update();
         }
     }
 }

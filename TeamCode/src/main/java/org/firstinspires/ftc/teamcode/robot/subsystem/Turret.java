@@ -67,14 +67,14 @@ public class Turret{
         Pose currentPose= follower.pose();
         double heading= currentPose.heading();
         heading = radtoDegrees(heading);
-        double erro = angletoGoal-heading;
-        if(erro>180){
-            erro -=360;
+        double error = angletoGoal-heading;
+        if(error>180){
+            error -=360;
         }
-        if(erro<-180){
-            erro+=360;
+        if(error<-180){
+            error+=360;
         }
-        return erro;
+        return error;
 
     }
     private double getAngleRequired(){
