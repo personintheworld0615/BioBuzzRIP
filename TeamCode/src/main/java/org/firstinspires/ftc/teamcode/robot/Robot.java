@@ -1,11 +1,7 @@
-
 package org.firstinspires.ftc.teamcode.robot;
 
-import static com.pedropathing.ivy.commands.Commands.conditional;
 import static com.pedropathing.ivy.commands.Commands.infinite;
-import static com.pedropathing.ivy.commands.Commands.instant;
 import static com.pedropathing.ivy.groups.Groups.loop;
-import static com.pedropathing.ivy.groups.Groups.sequential;
 
 import com.pedropathing.follower.Follower;
 import com.pedropathing.ivy.Command;
@@ -35,26 +31,26 @@ public class Robot {
     private Command intakeCommand;
     private Command reverseCommand;
 
-    private Command turretStuff;
-    private Command turretFinal;
+    // private Command turretStuff;
+    // private Command turretFinal;
     private Command drive;
 
-    private Command prepshootingtime;
-    private Command shoot;
-    private Command outtakestuff;
-
+    // private Command prepshootingtime;
+    // private Command shoot;
+    // private Command outtakestuff;
 
 
     // Constructor
-    public Robot(HardwareMap hardwareMap, Follower follower, Gamepad gamepad1, Gamepad gamepad2,boolean red) {
+    public Robot(HardwareMap hardwareMap, Follower follower,
+                 Gamepad gamepad1, Gamepad gamepad2, boolean red) {
 
         driver = gamepad1;
         operator = gamepad2;
         this.follower = follower;
 
-        shooter = new Shooter(hardwareMap,follower,red);
+//        shooter = new Shooter(hardwareMap, follower, red);
         intake = new Intake(hardwareMap, driver, operator);
-        turret = new Turret(follower, hardwareMap,red);
+        // turret = new Turret(follower, hardwareMap, red);
         drivetrain = new Drivetrain(hardwareMap, this.follower);
 
         initializeCommands();
@@ -64,19 +60,22 @@ public class Robot {
     // Initialize all commands once
     private void initializeCommands() {
 
-        // Intake
+        // Intake (Driver gamepad)
         intakeCommand = intake.intake();
 
         reverseCommand = intake.reverse()
-                .until(() -> operator.leftBumperWasReleased());
+                .until(() -> driver.leftBumperWasReleased());
 
 
+        // Turret disabled
+        /*
         turretStuff = sequential(
                 turret.defaultCommand().until(() -> driver.rightBumperWasPressed()),
                 turret.aimCommand().until(() -> driver.rightBumperWasPressed())
         );
 
         turretFinal = loop(turretStuff);
+        */
 
 
         // Drivetrain
@@ -85,7 +84,8 @@ public class Robot {
         ));
 
 
-        // Shooting preparation
+        // Shooting disabled
+        /*
         prepshootingtime = Command.build()
                 .setExecute(() -> {
                     intake.setPowers(1.0, -0.3);
@@ -94,8 +94,6 @@ public class Robot {
                 .setPriority(50)
                 .requiring(intake, shooter);
 
-
-        // Shooting
         shoot = Command.build()
                 .setExecute(() -> {
                     intake.setPowers(1.0, 1.0);
@@ -108,13 +106,10 @@ public class Robot {
                 .setPriority(50)
                 .requiring(intake, shooter);
 
-
-        // Complete shooting sequence
         outtakestuff = sequential(
-
                 prepshootingtime.until(() ->
                         operator.right_bumper ||
-                                operator.right_trigger <= 0.5
+                        operator.right_trigger <= 0.5
                 ),
 
                 conditional(
@@ -129,46 +124,37 @@ public class Robot {
                         })
                 )
         );
+        */
     }
 
 
     // Handle gamepad inputs
     public void MainLoop() {
 
-
-
-        if (!Scheduler.isScheduled(turretFinal)) {
-            Scheduler.schedule(turretFinal);
-        }
-
+        // Drivetrain
         if (!Scheduler.isScheduled(drive)) {
             Scheduler.schedule(drive);
         }
 
-
-        if (operator.left_trigger > 0.5 &&
+        // Intake (Driver left trigger)
+        if (driver.left_trigger > 0.5 &&
                 !Scheduler.isScheduled(intakeCommand)) {
 
             Scheduler.schedule(intakeCommand);
         }
 
-
-        // Reverse
-        if (operator.leftBumperWasPressed()) {
+        // Reverse intake (Driver left bumper)
+        if (driver.leftBumperWasPressed()) {
             Scheduler.schedule(reverseCommand);
         }
 
-
-        // Shooting
-        if (operator.right_trigger>0.5&&!outtakestuff.isScheduled()) {
-            outtakestuff.schedule();
-        }
+        // Turret and shooting disabled
     }
+
 
     public void update() {
         follower.update();
         MainLoop();
         Scheduler.execute();
     }
-
 }

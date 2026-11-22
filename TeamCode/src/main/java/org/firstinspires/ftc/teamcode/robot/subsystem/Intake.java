@@ -16,8 +16,8 @@ public class Intake {
 
 
     public Intake(HardwareMap hardwareMap , Gamepad gamepad1, Gamepad gamepad2) {
-        intake = hardwareMap.get(DcMotor.class, "intake");
-        transfer = hardwareMap.get(DcMotor.class, "transfer");
+        intake = hardwareMap.get(DcMotor.class, "intakeMotor");
+        transfer = hardwareMap.get(DcMotor.class, "transferMotor");
         driver = gamepad1;
         operator  = gamepad2;
         // Motor configuration
