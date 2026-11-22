@@ -60,8 +60,27 @@ public class Drivetrain {
         double turn = gamepad.right_stick_x;
 
         follower.manual(forward, lateral, turn);
-        follower.update();
 
+    }
+    public void manual(Gamepad gamepad) {
+        double forward = -gamepad.left_stick_y;
+        double strafe = gamepad.left_stick_x;
+        double turn = gamepad.right_stick_x;
+
+        double denominator = Math.max(
+                Math.abs(forward) + Math.abs(strafe) + Math.abs(turn),
+                1.0
+        );
+
+        double frontLeftPower = (forward + strafe + turn) / denominator;
+        double backLeftPower = (forward - strafe + turn) / denominator;
+        double frontRightPower = (forward - strafe - turn) / denominator;
+        double backRightPower = (forward + strafe - turn) / denominator;
+
+        leftFront.setPower(frontLeftPower);
+        leftBack.setPower(backLeftPower);
+        rightFront.setPower(frontRightPower);
+        rightBack.setPower(backRightPower);
     }
 
 

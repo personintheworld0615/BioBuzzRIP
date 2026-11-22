@@ -80,7 +80,7 @@ public class Robot {
 
         // Drivetrain
         drive = loop(infinite(
-                () -> drivetrain.combinedDrive(driver)
+                () -> drivetrain.manual(driver)
         ));
 
 
@@ -153,7 +153,7 @@ public class Robot {
 
 
     public void update() {
-        follower.update();
+//        follower.update();
         MainLoop();
         Scheduler.execute();
     }

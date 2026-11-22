@@ -26,7 +26,6 @@ public class TeleopBlue extends LinearOpMode {
 
         while (opModeIsActive()) {
             robot.update();
-            follower.update();
         }
     }
 }

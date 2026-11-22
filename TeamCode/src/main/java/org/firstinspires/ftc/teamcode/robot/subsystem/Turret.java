@@ -43,6 +43,7 @@ public class Turret {
     }
 
     private double errorToServo(double error) {
+        // this part is the only thing im not confident on
         double direction = SERVO_REVERSED ? -1 : 1;
         double ticks = Range.clip(
                 SERVO_CENTER + direction * error / SERVO_RANGE_DEG,
