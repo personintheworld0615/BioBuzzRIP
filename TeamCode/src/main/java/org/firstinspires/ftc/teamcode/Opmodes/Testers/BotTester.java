@@ -5,6 +5,7 @@ import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @Config
 @TeleOp(name = "Bot Tester", group = "Testers")
@@ -34,6 +35,7 @@ public class BotTester extends LinearOpMode {
         // Brake behavior
         intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         transferMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        transferMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         telemetry.addLine("Bot Tester Initialized");
         telemetry.addLine("Waiting for start...");
