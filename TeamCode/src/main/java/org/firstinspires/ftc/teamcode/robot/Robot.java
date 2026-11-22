@@ -35,14 +35,13 @@ public class Robot {
     private Command intakeCommand;
     private Command reverseCommand;
 
-    private Command turretConstantCommand;
-//    private Command turretFinal;
+    private Command turretStuff;
+    private Command turretFinal;
     private Command drive;
 
-    private Command preshoot;
+    private Command prepshootingtime;
     private Command shoot;
-    private double target_rpm = 0;
-    private Command shooterstuff;
+    private Command outtakestuff;
 
 
 
@@ -61,40 +60,48 @@ public class Robot {
         initializeCommands();
     }
 
+
+    // Initialize all commands once
     private void initializeCommands() {
 
+        // Intake
         intakeCommand = intake.intake();
+
         reverseCommand = intake.reverse()
                 .until(() -> operator.leftBumperWasReleased());
 
-        turretConstantCommand = loop(
-                sequential(
-                    turret.defaultCommand().until(() -> driver.rightBumperWasPressed()),
-                    turret.aimCommand().until(() -> driver.rightBumperWasPressed())
-                )
-            );
-//        turretFinal = loop(turretConstantCommand);
+
+        turretStuff = sequential(
+                turret.defaultCommand().until(() -> driver.rightBumperWasPressed()),
+                turret.aimCommand().until(() -> driver.rightBumperWasPressed())
+        );
+
+        turretFinal = loop(turretStuff);
 
 
+        // Drivetrain
         drive = loop(infinite(
                 () -> drivetrain.manualDrive(driver)
         ));
 
-        preshoot = Command.build()
+
+        // Shooting preparation
+        prepshootingtime = Command.build()
                 .setExecute(() -> {
                     intake.setPowers(1.0, -0.3);
-                    shooter.spinToRpm(1000);
-                    //reduced to an arbitrary val for now, TODO: change 1000 to the minimum speed in the lookup table
+                    shooter.spinToRpm(3200);
                 })
                 .setPriority(50)
                 .requiring(intake, shooter);
 
+
+        // Shooting
         shoot = Command.build()
                 .setExecute(() -> {
-                    //TODO: ensure that there is a conditional such that the intake & transfer spin up is dependent on the shooter being relatively close to RPM.
                     intake.setPowers(1.0, 1.0);
-                    shooter.spinToRpm(target_rpm);
+                    shooter.spinToRpm(3200);
                 })
+                //TODO: conditional intake & transfer spin up which depends on calculated requried PRM being atl somewhat reached
                 .setEnd(endCondition -> {
                     intake.setPowers(0, 0);
                     shooter.stop();
@@ -103,9 +110,10 @@ public class Robot {
                 .requiring(intake, shooter);
 
 
-        shooterstuff = sequential(
+        // Complete shooting sequence
+        outtakestuff = sequential(
 
-                preshoot.until(() ->
+                prepshootingtime.until(() ->
                         operator.right_bumper ||
                                 operator.right_trigger <= 0.5
                 ),
@@ -128,42 +136,38 @@ public class Robot {
     // Handle gamepad inputs
     public void MainLoop() {
 
-        if (!Scheduler.isScheduled(turretConstantCommand)) {
-            Scheduler.schedule(turretConstantCommand);
+
+
+        if (!Scheduler.isScheduled(turretFinal)) {
+            Scheduler.schedule(turretFinal);
         }
+
         if (!Scheduler.isScheduled(drive)) {
             Scheduler.schedule(drive);
         }
 
-        if (operator.left_trigger > 0.2 &&
+
+        if (operator.left_trigger > 0.5 &&
                 !Scheduler.isScheduled(intakeCommand)) {
 
             Scheduler.schedule(intakeCommand);
         }
 
 
+        // Reverse
         if (operator.leftBumperWasPressed()) {
             Scheduler.schedule(reverseCommand);
         }
 
 
         // Shooting
-        if (operator.right_trigger>0.5&&!shooterstuff.isScheduled()) {
-            shooterstuff.schedule();
+        if (operator.right_trigger>0.5&&!outtakestuff.isScheduled()) {
+            outtakestuff.schedule();
         }
     }
 
-    public Command getDriveCommand() {
-        return drive;
-    }
-
-    // Im pretty sure this is how it should be, because it was set to 3200 arbitrarily before which obv doesn;t make sense.
-    public Command shoot(double rpm){
-        target_rpm = rpm;
-        return shoot;
-    }
     public void update() {
-        follower.localizer.update();
+        follower.update();
         MainLoop();
         Scheduler.execute();
     }

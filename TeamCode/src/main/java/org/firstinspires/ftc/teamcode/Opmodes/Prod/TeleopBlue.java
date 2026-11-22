@@ -4,16 +4,16 @@ import com.pedropathing.follower.Follower;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.pedro.Constants;
+import org.firstinspires.ftc.teamcode.Util.Constants;
 import org.firstinspires.ftc.teamcode.robot.Robot;
 
 @TeleOp(name = "Teleop Blue", group = "Competition")
 public class TeleopBlue extends LinearOpMode {
-    private Follower follower;
+
     @Override
     public void runOpMode() throws InterruptedException {
+        Follower follower = Constants.createFollower(hardwareMap);
 
-        follower = Constants.create(hardwareMap);
         Robot robot = new Robot(
                 hardwareMap,
                 follower,
