@@ -29,7 +29,7 @@ public class PIDTester extends LinearOpMode {
 
         Shooter1 = hardwareMap.get(DcMotorEx.class, "Shooter1");
         Shooter2 = hardwareMap.get(DcMotorEx.class, "Shooter2");
-        outtake = new Shooter(hardwareMap);
+        outtake = new Shooter(hardwareMap,null,true);
 
         MyTelem.addData("INIT", 0);
         MyTelem.update();
