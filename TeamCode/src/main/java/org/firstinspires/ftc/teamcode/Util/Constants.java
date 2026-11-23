@@ -22,8 +22,10 @@ public class Constants {
     public static double kD = 0.05;
     public static double kF = 0.000021;
 
+    //
+
     // Shooter lookup table: distance to the hive (in) -> RPM. A slot with an RPM of 0 is empty.
     // Fill it with ShooterTest, then copy the arrays it prints into here; Dashboard edits are
     // lost when the robot restarts.
-    
+
 }

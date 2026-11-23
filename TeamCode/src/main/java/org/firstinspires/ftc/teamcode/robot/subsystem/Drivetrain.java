@@ -83,6 +83,13 @@ public class Drivetrain {
         rightBack.setPower(backRightPower);
     }
 
+    public String getTelemetry() {
+        return "LF power: " + leftFront.getPower() + " vel: " + leftFront.getVelocity() + "\n"
+                + "RF power: " + rightFront.getPower() + " vel: " + rightFront.getVelocity() + "\n"
+                + "LB power: " + leftBack.getPower() + " vel: " + leftBack.getVelocity() + "\n"
+                + "RB power: " + rightBack.getPower() + " vel: " + rightBack.getVelocity();
+    }
+
 
 
 

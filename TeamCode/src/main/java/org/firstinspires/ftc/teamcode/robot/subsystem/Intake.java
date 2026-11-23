@@ -27,6 +27,8 @@ public class Intake {
         transfer.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
+
+
     public Command intake(){
         Command intakeballs = Command.build()
                 .setStart(()->{
@@ -37,7 +39,7 @@ public class Intake {
                     intake.setPower(1);
                     transfer.setPower(1);
                 })
-                .setDone(()-> driver.left_trigger<0.2)
+                .setDone(()-> driver.left_trigger<0.5)
                 .setEnd(endCondition -> {
                     if(endCondition == EndCondition.NATURALLY){
                         stop();
@@ -70,5 +72,10 @@ public class Intake {
     public void setPowers(double intake, double transfer){
         this.intake.setPower(intake);
         this.transfer.setPower(transfer);
+    }
+
+    public String getTelemetry() {
+        return "Intake power: " + intake.getPower() + "\n"
+                + "Transfer power: " + transfer.getPower();
     }
 }

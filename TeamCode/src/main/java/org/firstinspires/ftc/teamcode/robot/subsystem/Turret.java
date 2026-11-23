@@ -62,6 +62,13 @@ public class Turret {
         return servo.getPosition();
     }
 
+    public String getTelemetry() {
+        double error = getError();
+        return "Turret pos: " + servo.getPosition() + "\n"
+                + "Turret target: " + errorToServo(error) + "\n"
+                + "Turret error: " + error;
+    }
+
     private double getError() {
         double angleToGoal = getAngleRequired();
 

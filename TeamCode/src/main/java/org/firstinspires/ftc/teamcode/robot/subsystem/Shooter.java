@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.robot.subsystem;
 
 import com.pedropathing.follower.Follower;
-import com.pedropathing.ivy.Command;
 import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -12,12 +11,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 import com.seattlesolvers.solverslib.util.InterpLUT;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.Util.MyTelem;
 import org.firstinspires.ftc.teamcode.Util.PIDFController;
 import org.firstinspires.ftc.teamcode.Util.Constants;
-
-import java.util.function.DoubleSupplier;
 
 public class Shooter {
 
@@ -35,6 +30,9 @@ public class Shooter {
     // One controller per motor: each keeps its own integral and last error.
     private PIDFController pidfController;
     private final ElapsedTime timer = new ElapsedTime();
+
+    double targetRPM = 0;
+
     InterpLUT lut;
     Pose topGoal;
     Pose bottomGoal;
@@ -59,6 +57,8 @@ public class Shooter {
         lut.add(3.6, 0.75);
         lut.add(4.1, 0.9);
         lut.add(5, 1);
+        //yo where tf did you pull these vlaues from????
+
         lut.createLUT();
 
         pidfController = new PIDFController(
@@ -97,9 +97,10 @@ public class Shooter {
     }
 
     public void spinToRpm() {
-        double distance = getDitance();
-        double targetRPM = lut.get(distance);
+        double distance = getDistance();
+        targetRPM = lut.get(distance);
         double currRPM = getRPM();
+
 
         // PID feedback
         double pidPower = pidfController.calculate(currRPM, targetRPM);
@@ -119,7 +120,7 @@ public class Shooter {
     }
     public void spinToRpm(double targetRPM) {
         double currRPM = getRPM();
-
+        this.targetRPM = targetRPM;
         // PID feedback
         double pidPower = pidfController.calculate(currRPM, targetRPM);
 
@@ -136,7 +137,12 @@ public class Shooter {
 
 
     }
-    private double getDitance(){
+
+    public double getTargetRpm(){
+        return targetRPM;
+    }
+    //OH MAN i sure do love getting my "    DITANCE"
+    private double getDistance(){
         Pose pose = follower.pose();
         Pose goal = null;
         if (pose.y()>70){
@@ -174,6 +180,14 @@ public class Shooter {
     public void setPower(double p) {
         Shooter.setPower(p);
         Shooter2.setPower(p);
+    }
+
+    public String getTelemetry() {
+        double distance = getDistance();
+        return "Shooter1 power: " + Shooter.getPower() + " rpm: " + getRPM() + "\n"
+                + "Shooter2 power: " + Shooter2.getPower() + " rpm: " + getRPM2() + "\n"
+                + "Distance: " + distance + " LUT: " + lut.get(distance) + "\n"
+                + "Linkage pos: " + linkage.getPosition();
     }
 
 

@@ -1,7 +1,11 @@
 package org.firstinspires.ftc.teamcode.robot;
 
+import static com.pedropathing.ivy.commands.Commands.conditional;
 import static com.pedropathing.ivy.commands.Commands.infinite;
+import static com.pedropathing.ivy.commands.Commands.*;
 import static com.pedropathing.ivy.groups.Groups.loop;
+import static com.pedropathing.ivy.groups.Groups.sequential;
+
 
 import com.pedropathing.follower.Follower;
 import com.pedropathing.ivy.Command;
@@ -31,13 +35,12 @@ public class Robot {
     private Command intakeCommand;
     private Command reverseCommand;
 
-    // private Command turretStuff;
-    // private Command turretFinal;
+     private Command turretCommand;
     private Command drive;
 
-    // private Command prepshootingtime;
-    // private Command shoot;
-    // private Command outtakestuff;
+     private Command prepshootingtime;
+     private Command shoot;
+     private Command shooterStuff;
 
 
     // Constructor
@@ -66,16 +69,10 @@ public class Robot {
         reverseCommand = intake.reverse()
                 .until(() -> driver.leftBumperWasReleased());
 
-
-        // Turret disabled
-        /*
-        turretStuff = sequential(
+        turretCommand = loop(sequential(
                 turret.defaultCommand().until(() -> driver.rightBumperWasPressed()),
                 turret.aimCommand().until(() -> driver.rightBumperWasPressed())
-        );
-
-        turretFinal = loop(turretStuff);
-        */
+        ));
 
 
         // Drivetrain
@@ -83,9 +80,6 @@ public class Robot {
                 () -> drivetrain.manual(driver)
         ));
 
-
-        // Shooting disabled
-        /*
         prepshootingtime = Command.build()
                 .setExecute(() -> {
                     intake.setPowers(1.0, -0.3);
@@ -106,7 +100,7 @@ public class Robot {
                 .setPriority(50)
                 .requiring(intake, shooter);
 
-        outtakestuff = sequential(
+        shooterStuff = sequential(
                 prepshootingtime.until(() ->
                         operator.right_bumper ||
                         operator.right_trigger <= 0.5
@@ -124,7 +118,6 @@ public class Robot {
                         })
                 )
         );
-        */
     }
 
 
@@ -137,10 +130,9 @@ public class Robot {
         }
 
         // Intake (Driver left trigger)
-        if (driver.left_trigger > 0.5 &&
-                !Scheduler.isScheduled(intakeCommand)) {
-
+        if (driver.left_trigger > 0.5 && !Scheduler.isScheduled(intakeCommand)) {
             Scheduler.schedule(intakeCommand);
+
         }
 
         // Reverse intake (Driver left bumper)
@@ -148,7 +140,15 @@ public class Robot {
             Scheduler.schedule(reverseCommand);
         }
 
+        if (!Scheduler.isScheduled(turretCommand)) {
+            Scheduler.schedule(turretCommand);
+        }
+
+
         // Turret and shooting disabled
+        if (operator.right_trigger>0.5&&!shooterStuff.isScheduled()) {
+            shooterStuff.schedule();
+        }
     }
 
 
