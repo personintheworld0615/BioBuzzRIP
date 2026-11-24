@@ -17,6 +17,8 @@ public class BotTester extends LinearOpMode {
 
     public static double INTAKE_POWER = 0.0;
     public static double TRANSFER_POWER = 0.0;
+    public static double SHOOTER_1_POWER = 0.0;
+    public static double SHOOTER_2_POWER = 0.0;
 
     // =========================
     // MOTORS
@@ -24,6 +26,8 @@ public class BotTester extends LinearOpMode {
 
     private DcMotor intakeMotor;
     private DcMotor transferMotor;
+    private DcMotor shooterMotor1;
+    private DcMotor shooterMotor2;
 
     @Override
     public void runOpMode() {
@@ -31,10 +35,16 @@ public class BotTester extends LinearOpMode {
         // Hardware mapping
         intakeMotor = hardwareMap.get(DcMotor.class, "intakeMotor");
         transferMotor = hardwareMap.get(DcMotor.class, "transferMotor");
+        shooterMotor1 = hardwareMap.get(DcMotor.class, "Shooter1");
+        shooterMotor2 = hardwareMap.get(DcMotor.class, "Shooter2");
 
         // Brake behavior
         intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         transferMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        shooterMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        shooterMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+
+        // Motor directions
         transferMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         telemetry.addLine("Bot Tester Initialized");
@@ -51,9 +61,15 @@ public class BotTester extends LinearOpMode {
             // Transfer
             transferMotor.setPower(TRANSFER_POWER);
 
+            // Shooters
+            shooterMotor1.setPower(SHOOTER_1_POWER);
+            shooterMotor2.setPower(SHOOTER_2_POWER);
+
             // Telemetry
             telemetry.addData("Intake Power", INTAKE_POWER);
             telemetry.addData("Transfer Power", TRANSFER_POWER);
+            telemetry.addData("Shooter 1 Power", SHOOTER_1_POWER);
+            telemetry.addData("Shooter 2 Power", SHOOTER_2_POWER);
 
             telemetry.update();
         }
@@ -61,5 +77,7 @@ public class BotTester extends LinearOpMode {
         // Stop motors
         intakeMotor.setPower(0);
         transferMotor.setPower(0);
+        shooterMotor1.setPower(0);
+        shooterMotor2.setPower(0);
     }
 }
