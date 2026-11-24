@@ -45,7 +45,11 @@ public class BotTester extends LinearOpMode {
         shooterMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         // Motor directions
-        transferMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        //THESE ARE THE CORRECT ONES
+        transferMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        shooterMotor1.setDirection(DcMotorSimple.Direction.FORWARD);
+        shooterMotor2.setDirection(DcMotorSimple.Direction.REVERSE);
+        intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         telemetry.addLine("Bot Tester Initialized");
         telemetry.addLine("Waiting for start...");
