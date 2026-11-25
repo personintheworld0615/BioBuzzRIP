@@ -17,10 +17,10 @@ public class TestTeleop extends LinearOpMode {
         DcMotor leftFront, leftBack, rightFront, rightBack;
 
 
-        leftFront = hardwareMap.get(DcMotor.class, "frontLeftMotor");
-        leftBack = hardwareMap.get(DcMotor.class, "backLeftMotor");
-        rightFront = hardwareMap.get(DcMotor.class, "frontRightMotor");
-        rightBack = hardwareMap.get(DcMotor.class, "backRightMotor");
+        leftFront = hardwareMap.get(DcMotor.class, "fl");
+        leftBack = hardwareMap.get(DcMotor.class, "bl");
+        rightFront = hardwareMap.get(DcMotor.class, "fr");
+        rightBack = hardwareMap.get(DcMotor.class, "br");
 
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
