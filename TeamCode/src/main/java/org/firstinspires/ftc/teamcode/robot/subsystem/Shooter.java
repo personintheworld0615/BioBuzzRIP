@@ -79,9 +79,9 @@ public class Shooter {
         Shooter2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         Shooter.setDirection(DcMotorSimple.Direction.FORWARD);
-        Shooter2.setDirection(DcMotorSimple.Direction.FORWARD);
-        linkage = hm.get(Servo.class, "Linkage");
-        linkage.setPosition(0.5);
+        Shooter2.setDirection(DcMotorSimple.Direction.REVERSE);
+//        linkage = hm.get(Servo.class, "Linkage");
+//        linkage.setPosition(0.5);
     }
 
     // =======================

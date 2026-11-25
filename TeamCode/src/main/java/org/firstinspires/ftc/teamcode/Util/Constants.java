@@ -17,10 +17,10 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.seattlesolvers.solverslib.util.InterpLUT;
 @Config
 public class Constants {
-    public static double kP = 0.05;
-    public static double kI = 0.05;
-    public static double kD = 0.05;
-    public static double kF = 0.000021;
+    public static double kP = 0.001;
+    public static double kI = 0.0;
+    public static double kD = 0.0;
+    public static double kF = 0.000185;
 
     //
 
