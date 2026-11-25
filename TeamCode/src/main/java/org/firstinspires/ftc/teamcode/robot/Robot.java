@@ -10,6 +10,7 @@ import static com.pedropathing.ivy.groups.Groups.sequential;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.ivy.Command;
 import com.pedropathing.ivy.Scheduler;
+import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -50,10 +51,11 @@ public class Robot {
         driver = gamepad1;
         operator = gamepad2;
         this.follower = follower;
+        this.follower.setPose(new Pose(72,72,0));
 
-//        shooter = new Shooter(hardwareMap, follower, red);
+        shooter = new Shooter(hardwareMap, follower, red);
         intake = new Intake(hardwareMap, driver, operator);
-        // turret = new Turret(follower, hardwareMap, red);
+         turret = new Turret(follower, hardwareMap, red);
         drivetrain = new Drivetrain(hardwareMap, this.follower);
         
         initializeCommands();
@@ -77,7 +79,7 @@ public class Robot {
 
         // Drivetrain
         drive = loop(infinite(
-                () -> drivetrain.manual(driver)
+                () -> drivetrain.combinedDrive(driver)
         ));
 
         prepshootingtime = Command.build()
@@ -145,7 +147,6 @@ public class Robot {
         }
 
 
-        // Turret and shooting disabled
         if (operator.right_trigger>0.5&&!shooterStuff.isScheduled()) {
             shooterStuff.schedule();
         }
@@ -153,7 +154,7 @@ public class Robot {
 
 
     public void update() {
-//        follower.update();
+        follower.update();
         MainLoop();
         Scheduler.execute();
     }

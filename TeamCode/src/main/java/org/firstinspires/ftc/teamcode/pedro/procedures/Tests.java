@@ -52,7 +52,6 @@ public class Tests extends Procedure {
         this.localizerFunction = localizerFunction;
         this.algorithmSupplier = algorithmSupplier;
     }
-
     @Override
     public void run() throws InterruptedException {
         boolean completed = false;
