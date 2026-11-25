@@ -5,6 +5,7 @@ import com.pedropathing.follower.Follower;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Utility;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.Util.MyTelem;
 import org.firstinspires.ftc.teamcode.robot.subsystem.Shooter;
@@ -30,7 +31,8 @@ public class PIDTester extends LinearOpMode {
         Shooter1 = hardwareMap.get(DcMotorEx.class, "Shooter1");
         Shooter2 = hardwareMap.get(DcMotorEx.class, "Shooter2");
         outtake = new Shooter(hardwareMap,null,true);
-
+        Shooter1.setDirection(DcMotorSimple.Direction.FORWARD);
+        Shooter2.setDirection(DcMotorSimple.Direction.REVERSE);
         MyTelem.addData("INIT", 0);
         MyTelem.update();
 

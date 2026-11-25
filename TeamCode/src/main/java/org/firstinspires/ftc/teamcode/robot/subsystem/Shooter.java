@@ -113,7 +113,6 @@ public class Shooter {
 
         double power2 = Range.clip(pidPower2, 0, 1);
         Shooter.setPower(power);
-
         Shooter2.setPower(power2);
 
 
