@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Opmodes.Prod.Auto;
 import static com.pedropathing.api.Paths.*;
 import static com.pedropathing.ivy.Scheduler.schedule;
 import static com.pedropathing.ivy.commands.Commands.*;
+import static com.pedropathing.ivy.groups.Groups.parallel;
 import static com.pedropathing.ivy.groups.Groups.sequential;
 import static com.pedropathing.ivy.pedro.PedroCommands.follow;
 
@@ -70,13 +71,22 @@ public class RedOptimalAuto extends LinearOpMode {
 
     private Command autoRoutine() {
         return sequential(
-                shoot(),
+//                shoot(),
+//                parallel(
+//                    follow(follower,path1()),
+//                    sequential(
+//                        waitUntil(()-> follower.completion()>0.8),
+//                        robot.autoIntakeCommand(500)
+//
+//                    )
+//                );
                 follow(follower, path1()),
-                shoot(),
+
+//                shoot(), //idt is needed
                 follow(follower, path2()),
-                shoot(),
+//                shoot(),
                 follow(follower, path3()),
-                shoot(),
+//                shoot(),
                 follow(follower, path4())
         );
     }
@@ -93,12 +103,10 @@ public class RedOptimalAuto extends LinearOpMode {
 
         waitForStart();
         if (isStopRequested()) return;
-
-        schedule(autoRoutine());
-
+        Scheduler.schedule(autoRoutine());
         while (opModeIsActive() && !isStopRequested()) {
-            follower.update();
             Scheduler.execute();
+            follower.update();
         }
     }
 }

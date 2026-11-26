@@ -39,6 +39,27 @@ public class Intake {
                     intake.setPower(1);
                     transfer.setPower(1);
                 })
+                .setPriority(50)
+                .setDone(()-> operator.left_trigger<0.4)
+                .setEnd(endCondition -> {
+                    if(endCondition == EndCondition.NATURALLY){
+                        stop();
+                    }
+                })
+                .requiring(this);
+
+        return intakeballs;
+    }
+    public Command intake2(){
+        Command intakeballs = Command.build()
+                .setStart(()->{
+                    intake.setPower(1);
+                    transfer.setPower(0.1);
+                })
+                .setExecute(()->{
+                    intake.setPower(1);
+                    transfer.setPower(-0.1);
+                })
                 .setDone(()-> operator.left_trigger<0.4)
                 .setEnd(endCondition -> {
                     if(endCondition == EndCondition.NATURALLY){

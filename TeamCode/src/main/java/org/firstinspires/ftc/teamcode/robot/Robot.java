@@ -4,6 +4,7 @@ import static com.pedropathing.ivy.commands.Commands.conditional;
 import static com.pedropathing.ivy.commands.Commands.infinite;
 import static com.pedropathing.ivy.commands.Commands.*;
 import static com.pedropathing.ivy.groups.Groups.loop;
+import static com.pedropathing.ivy.groups.Groups.race;
 import static com.pedropathing.ivy.groups.Groups.sequential;
 
 
@@ -15,6 +16,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.robot.subsystem.ColorSensor;
 import org.firstinspires.ftc.teamcode.robot.subsystem.Drivetrain;
 import org.firstinspires.ftc.teamcode.robot.subsystem.Intake;
 import org.firstinspires.ftc.teamcode.robot.subsystem.Shooter;
@@ -26,6 +28,7 @@ public class Robot {
     public Shooter shooter;
     public Intake intake;
     public Turret turret;
+    public ColorSensor colorSensor;
     public Drivetrain drivetrain;
     public Follower follower;
 
@@ -53,7 +56,7 @@ public class Robot {
         operator = gamepad2;
         this.follower = follower;
         this.follower.setPose(new Pose(72,72,0));
-
+        colorSensor = new ColorSensor(hardwareMap);
         shooter = new Shooter(hardwareMap, follower, red);
         intake = new Intake(hardwareMap, driver, operator);
          turret = new Turret(follower, hardwareMap, red);
@@ -67,7 +70,16 @@ public class Robot {
     private void initializeCommands() {
 
         // Intake (Driver gamepad)
-        intakeCommand = intake.intake();
+        intakeCommand = sequential(
+                intake.intake().until(
+                        () -> colorSensor.isColor(ColorSensor.DetectedColor.YELLOW)
+                ),
+                conditional(
+                        () -> operator.left_trigger > 0.5,
+                        intake.intake2(),
+                        instant(()->intake.stop())
+                )
+        );
 
         reverseCommand = intake.reverse()
                 .until(() -> operator.leftBumperWasReleased());
@@ -150,8 +162,6 @@ public class Robot {
             shooterStuff.schedule();
         }
     }
-    //IT TOOK ME A WHOLE 30 minutes to make ts cus why tf would I need to do all that by then it's all required so idfk
-    //should we make another version of these with instead a minimum rpm as the input so the robot always maintians that minimum rpm?
     public Command autonShootSequence(boolean stopFlywheelAfter) {
         ElapsedTime prepTimer = new ElapsedTime();
         ElapsedTime feedTimer = new ElapsedTime();
@@ -164,7 +174,7 @@ public class Robot {
 //                .setPriority(50)
                 .requiring(intake, shooter)
                 .until(() -> shooter.isRPMGood() || prepTimer.milliseconds() > 1500);
-
+        waitMs(500);
         Command shoot = Command.build()
                 .setExecute(() -> {
                     intake.setPowers(1.0, 1.0);
@@ -186,7 +196,17 @@ public class Robot {
         );
     }
 
-
+    public Command autoIntakeCommand(double wait) {
+        return race(
+                sequential(
+                intake.intake().until(
+                        () -> colorSensor.isColor(ColorSensor.DetectedColor.YELLOW)
+                ),
+                        intake.intake2()
+        ),
+        waitMs(wait)
+        );
+    }
     public void update() {
         follower.update();
         MainLoop();
