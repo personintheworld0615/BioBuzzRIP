@@ -13,6 +13,7 @@ import com.pedropathing.ivy.Scheduler;
 import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.robot.subsystem.Drivetrain;
 import org.firstinspires.ftc.teamcode.robot.subsystem.Intake;
@@ -149,11 +150,50 @@ public class Robot {
             shooterStuff.schedule();
         }
     }
+    //IT TOOK ME A WHOLE 30 minutes to make ts cus why tf would I need to do all that by then it's all required so idfk
+    //should we make another version of these with instead a minimum rpm as the input so the robot always maintians that minimum rpm?
+    public Command autonShootSequence(boolean stopFlywheelAfter) {
+        ElapsedTime prepTimer = new ElapsedTime();
+        ElapsedTime feedTimer = new ElapsedTime();
+
+        Command prep = Command.build()
+                .setExecute(() -> {
+                    intake.setPowers(1.0, -0.5);
+                    shooter.spinToRpm();
+                })
+//                .setPriority(50)
+                .requiring(intake, shooter)
+                .until(() -> shooter.isRPMGood() || prepTimer.milliseconds() > 1500);
+
+        Command shoot = Command.build()
+                .setExecute(() -> {
+                    intake.setPowers(1.0, 1.0);
+                    shooter.spinToRpm();
+                })
+                .setEnd(endCondition -> {
+                    intake.setPowers(0, 0);
+                    if (stopFlywheelAfter) shooter.stop();
+                })
+//                .setPriority(51) lwk don't need the priorities cus they're inside sequrential
+                .requiring(intake, shooter)
+                .until(() -> feedTimer.milliseconds() > 1200);
+
+        return sequential(
+                instant(prepTimer::reset),//just to be
+                prep,
+                instant(()->feedTimer.reset()),// bipolar like you
+                shoot
+        );
+    }
 
 
     public void update() {
         follower.update();
         MainLoop();
+        Scheduler.execute();
+    }
+    public void autoUpdate() {
+        follower.update();
         Scheduler.execute();
     }
 }
