@@ -12,7 +12,7 @@ public class NavaleAuto extends LinearOpMode {
 
         waitForStart();
         while(opModeIsActive()){
-            //Loop
+            //Loop                 
         }
     }
 }

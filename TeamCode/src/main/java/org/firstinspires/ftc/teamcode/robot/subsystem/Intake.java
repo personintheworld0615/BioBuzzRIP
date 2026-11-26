@@ -74,6 +74,9 @@ public class Intake {
         this.transfer.setPower(transfer);
     }
 
+    public void setIntakePower(double pwr){this.intake.setPower(pwr);}
+    public void setTransferpower(double pwr){this.transfer.setPower(pwr);}
+
     public String getTelemetry() {
         return "Intake power: " + intake.getPower() + "\n"
                 + "Transfer power: " + transfer.getPower();

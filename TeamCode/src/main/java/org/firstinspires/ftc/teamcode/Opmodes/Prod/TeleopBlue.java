@@ -10,9 +10,9 @@ import org.firstinspires.ftc.teamcode.robot.Robot;
 @TeleOp(name = "Teleop Blue", group = "Competition")
 public class TeleopBlue extends LinearOpMode {
 
-    @Override
-    public void runOpMode() throws InterruptedException {
-        Follower follower = Constants.create(hardwareMap);
+        @Override
+        public void runOpMode() throws InterruptedException {
+            Follower follower = Constants.create(hardwareMap);
 
         Robot robot = new Robot(
                 hardwareMap,

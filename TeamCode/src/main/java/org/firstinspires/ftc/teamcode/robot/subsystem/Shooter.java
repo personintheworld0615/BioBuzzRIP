@@ -117,6 +117,10 @@ public class Shooter {
 
 
     }
+
+    public boolean isRPMGood(){
+        return (getRPM()>= targetRPM-200) && (getRPM()<= targetRPM+200) && (getRPM2()>= targetRPM-200) && (getRPM2()<= targetRPM+200);
+    }
     public void spinToRpm(double targetRPM) {
         double currRPM = getRPM();
         this.targetRPM = targetRPM;

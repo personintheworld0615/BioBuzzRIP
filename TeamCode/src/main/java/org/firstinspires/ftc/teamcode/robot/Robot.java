@@ -21,7 +21,7 @@ import org.firstinspires.ftc.teamcode.robot.subsystem.Turret;
 
 public class Robot {
 
-    // Subsystems
+    //Subsystems
     public Shooter shooter;
     public Intake intake;
     public Turret turret;
@@ -84,7 +84,7 @@ public class Robot {
 
         prepshootingtime = Command.build()
                 .setExecute(() -> {
-                    intake.setPowers(1.0, -0.3);
+                    intake.setPowers(1.0, -0.5);
                     shooter.spinToRpm();
                 })
                 .setPriority(50)
@@ -131,12 +131,11 @@ public class Robot {
             Scheduler.schedule(drive);
         }
 
-        // Intake (Driver left trigger)
         if (operator.left_trigger > 0.5 && !Scheduler.isScheduled(intakeCommand)) {
             Scheduler.schedule(intakeCommand);
+
         }
 
-        // Reverse intake (Driver left bumper)
         if (operator.leftBumperWasPressed()) {
             Scheduler.schedule(reverseCommand);
         }
