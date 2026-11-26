@@ -69,7 +69,7 @@ public class Robot {
         intakeCommand = intake.intake();
 
         reverseCommand = intake.reverse()
-                .until(() -> driver.leftBumperWasReleased());
+                .until(() -> operator.leftBumperWasReleased());
 
         turretCommand = loop(sequential(
                 turret.defaultCommand().until(() -> driver.rightBumperWasPressed()),
@@ -132,13 +132,12 @@ public class Robot {
         }
 
         // Intake (Driver left trigger)
-        if (driver.left_trigger > 0.5 && !Scheduler.isScheduled(intakeCommand)) {
+        if (operator.left_trigger > 0.5 && !Scheduler.isScheduled(intakeCommand)) {
             Scheduler.schedule(intakeCommand);
-
         }
 
         // Reverse intake (Driver left bumper)
-        if (driver.leftBumperWasPressed()) {
+        if (operator.leftBumperWasPressed()) {
             Scheduler.schedule(reverseCommand);
         }
 
