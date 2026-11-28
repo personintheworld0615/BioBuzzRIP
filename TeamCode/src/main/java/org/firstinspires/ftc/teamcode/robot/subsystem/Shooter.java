@@ -52,11 +52,9 @@ public class Shooter {
 
         lut = new InterpLUT();
 
-        lut.add(1.1, 0.2);
-        lut.add(2.7, .5);
-        lut.add(3.6, 0.75);
-        lut.add(4.1, 0.9);
-        lut.add(5, 1);
+        lut.add(0, 3200);
+        lut.add(10, 3200);
+        lut.add(1000000000, 3200);
         //yo where tf did you pull these vlaues from????
 
         lut.createLUT();
@@ -97,8 +95,8 @@ public class Shooter {
     }
 
     public void spinToRpm() {
-        double distance = getDistance();
-        targetRPM = lut.get(distance);
+        double distance = getDitance();
+        this.targetRPM = lut.get(distance);
         double currRPM = getRPM();
 
 
@@ -120,6 +118,9 @@ public class Shooter {
 
     public boolean isRPMGood(){
         return (getRPM()>= targetRPM-200) && (getRPM()<= targetRPM+200) && (getRPM2()>= targetRPM-200) && (getRPM2()<= targetRPM+200);
+    }
+    public boolean isRPMGood(double low, double high){
+        return (getRPM()>=low&&getRPM()<=high);
     }
     public void spinToRpm(double targetRPM) {
         double currRPM = getRPM();
@@ -145,7 +146,7 @@ public class Shooter {
         return targetRPM;
     }
     //OH MAN i sure do love getting my "    DITANCE"
-    private double getDistance(){
+    public double getDitance(){
         Pose pose = follower.pose();
         Pose goal = null;
         if (pose.y()>70){
@@ -186,7 +187,7 @@ public class Shooter {
     }
 
     public String getTelemetry() {
-        double distance = getDistance();
+        double distance = getDitance();
         return "Shooter1 power: " + Shooter.getPower() + " rpm: " + getRPM() + "\n"
                 + "Shooter2 power: " + Shooter2.getPower() + " rpm: " + getRPM2() + "\n"
                 + "Distance: " + distance + " LUT: " + lut.get(distance) + "\n"

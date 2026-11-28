@@ -33,34 +33,14 @@ public class Intake {
         Command intakeballs = Command.build()
                 .setStart(()->{
                     intake.setPower(1);
-                    transfer.setPower(1);
+                    transfer.setPower(0.7);
                 })
                 .setExecute(()->{
                     intake.setPower(1);
-                    transfer.setPower(1);
+                    transfer.setPower(0.7);
                 })
-                .setPriority(50)
-                .setDone(()-> operator.left_trigger<0.4)
-                .setEnd(endCondition -> {
-                    if(endCondition == EndCondition.NATURALLY){
-                        stop();
-                    }
-                })
-                .requiring(this);
-
-        return intakeballs;
-    }
-    public Command intake2(){
-        Command intakeballs = Command.build()
-                .setStart(()->{
-                    intake.setPower(1);
-                    transfer.setPower(0.1);
-                })
-                .setExecute(()->{
-                    intake.setPower(1);
-                    transfer.setPower(-0.1);
-                })
-                .setDone(()-> operator.left_trigger<0.4)
+                .setPriority(30)
+                .setDone(()-> operator.right_trigger<=0.5)
                 .setEnd(endCondition -> {
                     if(endCondition == EndCondition.NATURALLY){
                         stop();
@@ -81,7 +61,7 @@ public class Intake {
                     transfer.setPower(-1);
                 })
                 .setEnd(endCondition -> stop())
-                .setPriority(30)
+                .setPriority(50)
                 .requiring(this);
 
         return reverse;

@@ -19,13 +19,13 @@ public class Turret {
     Pose bottomGoal;
 
     public static double SERVO_CENTER = 0.5;
-    public static double SERVO_RANGE_DEG = 360;
+    public static double SERVO_RANGE_DEG = 350;
     public static boolean SERVO_REVERSED = false;
 
     // YO YOU GOTTA PASS IN HARDWAREMAP
     public Turret(Follower follower, HardwareMap hw, boolean red) {
         this.follower = follower;
-        servo = hw.get(Servo.class, "Turret");
+        servo = hw.get(Servo.class, "turret1");
 
         if (red) {
             topGoal = new Pose(58, 86);

@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.robot;
 import static com.pedropathing.ivy.commands.Commands.conditional;
 import static com.pedropathing.ivy.commands.Commands.infinite;
 import static com.pedropathing.ivy.commands.Commands.*;
+import static com.pedropathing.ivy.groups.Groups.deadline;
 import static com.pedropathing.ivy.groups.Groups.loop;
 import static com.pedropathing.ivy.groups.Groups.race;
 import static com.pedropathing.ivy.groups.Groups.sequential;
@@ -46,6 +47,9 @@ public class Robot {
      private Command prepshootingtime;
      private Command shoot;
      private Command shooterStuff;
+    private Command flowerstuff;
+
+    private boolean turretOff = false;
 
 
     // Constructor
@@ -70,19 +74,10 @@ public class Robot {
     private void initializeCommands() {
 
         // Intake (Driver gamepad)
-        intakeCommand = sequential(
-                intake.intake().until(
-                        () -> colorSensor.isColor(ColorSensor.DetectedColor.YELLOW)
-                ),
-                conditional(
-                        () -> operator.left_trigger > 0.5,
-                        intake.intake2(),
-                        instant(()->intake.stop())
-                )
-        );
+        intakeCommand = intake.intake();
 
         reverseCommand = intake.reverse()
-                .until(() -> operator.leftBumperWasReleased());
+                .until(() -> operator.rightBumperWasReleased());
 
         turretCommand = loop(sequential(
                 turret.defaultCommand().until(() -> driver.rightBumperWasPressed()),
@@ -108,6 +103,9 @@ public class Robot {
                     intake.setPowers(1.0, 1.0);
                     shooter.spinToRpm();
                 })
+                .setDone(
+                        ()-> operator.right_trigger<=0.5
+                )
                 .setEnd(endCondition -> {
                     intake.setPowers(0, 0);
                     shooter.stop();
@@ -115,23 +113,26 @@ public class Robot {
                 .setPriority(50)
                 .requiring(intake, shooter);
 
-        shooterStuff = sequential(
-                prepshootingtime.until(() ->
-                        operator.right_bumper ||
-                        operator.right_trigger <= 0.5
+        shooterStuff = race(
+                sequential(
+                        prepshootingtime.until(() ->
+                                shooter.isRPMGood()||
+                                        operator.right_trigger <= 0.5
+                        ),
+
+                        conditional(
+                                () -> operator.right_trigger > 0.5,
+
+                                shoot.until(() -> operator.right_trigger <= 0.5),
+
+                                instant(() -> {
+                                    intake.stop();
+                                    shooter.stop();
+                                })
+                        )
                 ),
 
-                conditional(
-                        () -> operator.right_bumper &&
-                                operator.right_trigger > 0.5,
-
-                        shoot.until(() -> !operator.right_bumper),
-
-                        instant(() -> {
-                            intake.stop();
-                            shooter.stop();
-                        })
-                )
+                turret.aimCommand().until(() -> operator.right_trigger <= 0.5).unless(()-> turretOff)
         );
     }
 
@@ -144,18 +145,19 @@ public class Robot {
             Scheduler.schedule(drive);
         }
 
-        if (operator.left_trigger > 0.5 && !Scheduler.isScheduled(intakeCommand)) {
+        if (operator.right_trigger > 0.5 && !Scheduler.isScheduled(intakeCommand)) {
             Scheduler.schedule(intakeCommand);
 
         }
 
-        if (operator.leftBumperWasPressed()) {
+        if (operator.rightBumperWasPressed()) {
             Scheduler.schedule(reverseCommand);
         }
-
-        if (!Scheduler.isScheduled(turretCommand)) {
-            Scheduler.schedule(turretCommand);
+        if(operator.dpadLeftWasPressed()){
+            turretOff = !turretOff;
         }
+
+
 
 
         if (operator.right_trigger>0.5&&!shooterStuff.isScheduled()) {
@@ -163,48 +165,41 @@ public class Robot {
         }
     }
     public Command autonShootSequence(boolean stopFlywheelAfter) {
-        ElapsedTime prepTimer = new ElapsedTime();
-        ElapsedTime feedTimer = new ElapsedTime();
-
         Command prep = Command.build()
                 .setExecute(() -> {
                     intake.setPowers(1.0, -0.5);
-                    shooter.spinToRpm();
+                    shooter.spinToRpm(3200);
                 })
 //                .setPriority(50)
-                .requiring(intake, shooter)
-                .until(() -> shooter.isRPMGood() || prepTimer.milliseconds() > 1500);
-        waitMs(500);
+                .requiring(intake, shooter);
         Command shoot = Command.build()
                 .setExecute(() -> {
                     intake.setPowers(1.0, 1.0);
-                    shooter.spinToRpm();
+                    shooter.spinToRpm(3200);
                 })
                 .setEnd(endCondition -> {
                     intake.setPowers(0, 0);
                     if (stopFlywheelAfter) shooter.stop();
                 })
 //                .setPriority(51) lwk don't need the priorities cus they're inside sequrential
-                .requiring(intake, shooter)
-                .until(() -> feedTimer.milliseconds() > 1200);
+                .requiring(intake, shooter);
 
         return sequential(
-                instant(prepTimer::reset),//just to be
-                prep,
-                instant(()->feedTimer.reset()),// bipolar like you
-                shoot
+                race(
+                        prep.until(() -> shooter.isRPMGood(3100,3300)),
+                        waitMs(1500)
+                ),
+                race(
+                        shoot,
+                        waitMs(1200)
+                )
         );
     }
 
     public Command autoIntakeCommand(double wait) {
-        return race(
-                sequential(
-                intake.intake().until(
-                        () -> colorSensor.isColor(ColorSensor.DetectedColor.YELLOW)
-                ),
-                        intake.intake2()
-        ),
-        waitMs(wait)
+        return deadline(
+                waitMs(wait),
+                intake.intake()
         );
     }
     public void update() {

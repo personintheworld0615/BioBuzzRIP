@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.pedro.Constants;
 import org.firstinspires.ftc.teamcode.robot.Robot;
 
-@TeleOp(name = "Teleop Blue", group = "Competition")
+@TeleOp(name = "Teleop REAL BLUE", group = "Competition")
 public class TeleopBlue extends LinearOpMode {
 
         @Override

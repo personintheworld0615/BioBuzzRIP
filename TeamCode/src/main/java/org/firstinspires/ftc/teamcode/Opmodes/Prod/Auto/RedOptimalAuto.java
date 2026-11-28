@@ -75,7 +75,16 @@ public class RedOptimalAuto extends LinearOpMode {
 
     public static Command autoRoutine() {
         return sequential(
+                //shoot
+//                parallel(
+//                        follow(follower, path1()),
+//                        sequential(
+//                                waitUntil(() -> follower.completion() > 0.6),
+//                                robot.autoIntakeCommand(500)
+//                        )
+//                ),
                 follow(follower, path1()),
+
                 follow(follower, path2()),
                 follow(follower, path3()),
                 follow(follower, path4())

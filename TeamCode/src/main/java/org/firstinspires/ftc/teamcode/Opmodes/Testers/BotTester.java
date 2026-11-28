@@ -1,11 +1,17 @@
 package org.firstinspires.ftc.teamcode.Opmodes.Testers;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.pedropathing.follower.Follower;
+import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.teamcode.pedro.Constants;
+import org.firstinspires.ftc.teamcode.robot.subsystem.Shooter;
 
 @Config
 @TeleOp(name = "Bot Tester", group = "Testers")
@@ -17,8 +23,10 @@ public class BotTester extends LinearOpMode {
 
     public static double INTAKE_POWER = 0.0;
     public static double TRANSFER_POWER = 0.0;
-    public static double SHOOTER_1_POWER = 0.0;
-    public static double SHOOTER_2_POWER = 0.0;
+    public static double shooterRPM = 0.0;
+    public static double shootermotorpower = 0.0;
+    public static double shootermotorpower2 = 0.0;
+
 
     public static double TURRET_SERVO_POWER = 0.5;
     public static double HOOD_SERVO_POWER = 0.5;
@@ -40,10 +48,10 @@ public class BotTester extends LinearOpMode {
     private Servo turret1;
     private Servo turret2;
 
-    private Servo hood;
+    private CRServo hood;
 
     private Servo flower1;
-    private Servo flower2;
+    private Shooter shooter;
 
     @Override
     public void runOpMode() {
@@ -60,19 +68,20 @@ public class BotTester extends LinearOpMode {
         turret1 = hardwareMap.get(Servo.class, "turret1");
         turret2 = hardwareMap.get(Servo.class, "turret2");
 
-        hood = hardwareMap.get(Servo.class, "hood");
+//        hood = hardwareMap.get(CRServo.class, "hood");
 
         flower1 = hardwareMap.get(Servo.class, "flower1");
-        flower2 = hardwareMap.get(Servo.class, "flower2");
 
         // =========================
         // BRAKE BEHAVIOR
         // =========================
-
+        Follower follower = Constants.create(hardwareMap);
+        follower.setPose(new Pose(72,72,0));
         intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         transferMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         shooterMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         shooterMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        shooter = new Shooter(hardwareMap,follower,true);
 
         // =========================
         // MOTOR DIRECTIONS
@@ -80,8 +89,8 @@ public class BotTester extends LinearOpMode {
 
         transferMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         shooterMotor1.setDirection(DcMotorSimple.Direction.FORWARD);
-        shooterMotor2.setDirection(DcMotorSimple.Direction.FORWARD);
-        intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        shooterMotor2.setDirection(DcMotorSimple.Direction.REVERSE);
+        intakeMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         telemetry.addLine("Bot Tester Initialized");
         telemetry.addLine("Waiting for start...");
@@ -98,19 +107,19 @@ public class BotTester extends LinearOpMode {
             // Motors
             intakeMotor.setPower(INTAKE_POWER);
             transferMotor.setPower(TRANSFER_POWER);
-            shooterMotor1.setPower(SHOOTER_1_POWER);
-            shooterMotor2.setPower(SHOOTER_2_POWER);
+//            shooterMotor1.setPower(shootermotorpower);
+//            shooterMotor2.setPower(shootermotorpower2);
 
+            shooter.spinToRpm(shooterRPM);
             // Turret Servos
             turret1.setPosition(TURRET_SERVO_POWER);
-            turret2.setPosition(TURRET_SERVO_POWER);
+//            turret2.setPosition(TURRET_SERVO_POWER);
 
             // Hood Servo
-            hood.setPosition(HOOD_SERVO_POWER);
+//            hood.setPosition(HOOD_SERVO_POWER);
 
             // Flower Servos
             flower1.setPosition(FLOWER_SERVO_POWER);
-            flower2.setPosition(FLOWER_SERVO_POWER);
 
             // =========================
             // TELEMETRY
@@ -118,8 +127,9 @@ public class BotTester extends LinearOpMode {
 
             telemetry.addData("Intake Power", INTAKE_POWER);
             telemetry.addData("Transfer Power", TRANSFER_POWER);
-            telemetry.addData("Shooter 1 Power", SHOOTER_1_POWER);
-            telemetry.addData("Shooter 2 Power", SHOOTER_2_POWER);
+            telemetry.addData("Shooter 1 rpm", shooterRPM);
+            telemetry.addData("Shooter 1 power", shooterMotor1.getPower());
+            telemetry.addData("Shooter 2 power", shooterMotor2.getPower());
 
             telemetry.addData("Turret Position", TURRET_SERVO_POWER);
             telemetry.addData("Hood Position", HOOD_SERVO_POWER);
