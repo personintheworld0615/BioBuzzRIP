@@ -50,6 +50,7 @@ public class Robot {
     private Command flowerstuff;
 
     private boolean turretOff = false;
+    private boolean flowerDown = false;
 
 
     // Constructor
@@ -67,6 +68,7 @@ public class Robot {
         drivetrain = new Drivetrain(hardwareMap, this.follower);
         
         initializeCommands();
+        Scheduler.schedule(intake.flowerIntakeUp()); // just for all init's
     }
 
 
@@ -157,7 +159,14 @@ public class Robot {
             turretOff = !turretOff;
         }
 
-
+        if (operator.xWasPressed()) {
+            if (flowerDown) {
+                Scheduler.schedule(intake.flowerIntakeUp());
+            } else {
+                Scheduler.schedule(intake.flowerIntakeDown());
+            }
+            flowerDown = !flowerDown;
+        }
 
 
         if (operator.right_trigger>0.5&&!shooterStuff.isScheduled()) {

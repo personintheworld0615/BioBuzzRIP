@@ -1,10 +1,13 @@
 package org.firstinspires.ftc.teamcode.robot.subsystem;
 
+import static com.pedropathing.ivy.commands.Commands.instant;
+
 import com.pedropathing.ivy.Command;
 import com.pedropathing.ivy.behaviors.EndCondition;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 
 public class Intake {
@@ -13,11 +16,13 @@ public class Intake {
     private DcMotor transfer;
     private Gamepad driver;
     private Gamepad operator;
+    private Servo flowerServo;
 
 
     public Intake(HardwareMap hardwareMap , Gamepad gamepad1, Gamepad gamepad2) {
         intake = hardwareMap.get(DcMotor.class, "intakeMotor");
         transfer = hardwareMap.get(DcMotor.class, "transferMotor");
+        flowerServo = hardwareMap.get(Servo.class, "flowerServo");
         driver = gamepad1;
         operator  = gamepad2;
         // Motor configuration
@@ -66,6 +71,13 @@ public class Intake {
 
         return reverse;
     }
+    public Command flowerIntakeDown(){
+        return instant(()->flowerServo.setPosition(0.5));
+    }
+    public Command flowerIntakeUp(){
+        return instant(()->flowerServo.setPosition(0.1));
+    }
+
     public void stop(){
         intake.setPower(0);
         transfer.setPower(0);
